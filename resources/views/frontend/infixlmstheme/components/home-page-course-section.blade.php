@@ -1,5 +1,5 @@
 <div>
-    <div class="course_area">
+    <div class="course_area section_spacing">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">

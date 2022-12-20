@@ -1,6 +1,74 @@
 <div>
     <div class="category_area">
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    @if(isset($homeContent))
+                    @if($homeContent->show_key_feature==1)
+
+                    <div class="couses_category">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-4">
+                                <div class="single_course_cat">
+                                    <div class="icon">
+                                        @if(!empty($homeContent->key_feature_logo1))
+                                        <img src="{{asset($homeContent->key_feature_logo1)}}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="course_content">
+                                        <h4>
+                                            @if(!empty($homeContent->feature_link1))<a href="{{$homeContent->feature_link1}}"> @endif
+                                                {{$homeContent->key_feature_title1}}
+                                                @if(!empty($homeContent->feature_link1)) </a> @endif
+                                        </h4>
+                                        <p>{{$homeContent->key_feature_subtitle1}} </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-4">
+                                <div class="single_course_cat">
+                                    <div class="icon">
+                                        @if(!empty($homeContent->key_feature_logo2))
+                                        <img src="{{asset($homeContent->key_feature_logo2)}}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="course_content">
+                                        <h4>
+                                            @if(!empty($homeContent->feature_link2))<a href="{{$homeContent->feature_link2}}"> @endif
+                                                {{$homeContent->key_feature_title2}}
+                                                @if(!empty($homeContent->feature_link2)) </a> @endif
+                                        </h4>
+                                        <p>{{$homeContent->key_feature_subtitle2}} </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-4">
+                                <div class="single_course_cat">
+                                    <div class="icon">
+                                        @if(!empty($homeContent->key_feature_logo3))
+                                        <img src="{{asset($homeContent->key_feature_logo3)}}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="course_content">
+                                        <h4>
+                                            @if(!empty($homeContent->feature_link3))<a href="{{$homeContent->feature_link3}}"> @endif
+                                                {{$homeContent->key_feature_title3}}
+                                                @if(!empty($homeContent->feature_link3)) </a> @endif
+                                        </h4>
+                                        <p>{{$homeContent->key_feature_subtitle3}} </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @endif
+                    @endif
+
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="row">
@@ -22,7 +90,6 @@
                                 <p>{{@$homeContent->how_to_buy_details1}}</p>
                             </div>
                         </a>
-
 
                         <a href="javascript:void(0)">
                             <div class="single_module text-center">
@@ -63,6 +130,81 @@
                     </div>
                 </div>
 
+                <div class="col-12">
+                    @if(isset($top_courses))
+                    @foreach($top_courses as $course)
+                    @if($course->id% 2 != 0)
+                    <div class="course_even row thumb_inner lazy" data-src="{{$course->course_background_image}}">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="px-5">
+                                <div class="course_content">
+                                    <div class="course_icon_container">
+                                        <img class="course_icon" src="{{$course->course_icon}}" alt="">
+                                    </div>
+                                    <div class="course_title_container">
+                                        <a href="{{courseDetailsUrl(@$course->id,@$course->type,@$course->slug)}}">
+
+                                            <h2 class="noBrake text-white" title=" {{$course->title}}">
+                                                {{$course->title}}
+                                            </h2>
+                                        </a>
+                                    </div>
+                                    @if(!is_null(json_decode($course->course_feature, true)) && count(json_decode($course->course_feature, true)))
+                                    <div>
+                                        @foreach(json_decode($course->course_feature, true) as $course_feature)
+                                        <span class="row pl-3 text-white"><i class="ti-check font-weight-bold pt-1 pr-2"></i>
+                                            <h5 class="text-white">{{$course_feature}}</h5>
+                                        </span>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div>
+                                <img class="course_tumbnail" src="{{$course->image}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    <div class="course_odd row">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div>
+                                <img class="course_tumbnail" src="{{$course->image}}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div class="px-5">
+                                <div class="course_content">
+                                    <div class="course_icon_container">
+                                        <img class="course_icon" src="{{$course->course_icon}}" alt="">
+                                    </div>
+                                    <a href="{{courseDetailsUrl(@$course->id,@$course->type,@$course->slug)}}">
+
+                                        <h2 class="noBrake" title=" {{$course->title}}">
+                                            {{$course->title}}
+                                        </h2>
+                                    </a>
+
+                                    @if(!is_null(json_decode($course->course_feature, true)) && count(json_decode($course->course_feature, true)))
+                                    <div>
+                                        @foreach(json_decode($course->course_feature, true) as $course_feature)
+                                        <span class="row pl-3"><i class="ti-check font-weight-bold pt-1 pr-2"></i>
+                                            <h5>{{$course_feature}}</h5>
+                                        </span>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                    @endif
+
+                </div>
 
                 <div class="col-12">
                     <div class="section__title mb_40">
@@ -123,4 +265,6 @@
             </div>
         </div>
     </div>
+
+
 </div>

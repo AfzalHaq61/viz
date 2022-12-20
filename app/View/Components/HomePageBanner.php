@@ -3,7 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-use Modules\CourseSetting\Entities\Course;
+use Modules\FrontendManage\Entities\Slider;
 
 class HomePageBanner extends Component
 {
@@ -16,8 +16,10 @@ class HomePageBanner extends Component
 
     public function render()
     {
-        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->take(4)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
-
-        return view(theme('components.home-page-banner'), compact('top_courses'));
+        $sliders = null;
+        if ($this->homeContent->show_banner_section == 0) {
+            $sliders = Slider::where('status', 1)->get();
+        }
+        return view(theme('components.home-page-banner'), compact('sliders'));
     }
 }

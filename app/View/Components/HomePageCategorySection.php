@@ -5,6 +5,7 @@ namespace App\View\Components;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 use Modules\FrontendManage\Entities\FrontPage;
+use Modules\CourseSetting\Entities\Course;
 
 class HomePageCategorySection extends Component
 {
@@ -45,12 +46,12 @@ class HomePageCategorySection extends Component
         }
         $this->homeContent = $homeContent;
         $this->categories = $categories;
-
     }
 
 
     public function render()
     {
-        return view(theme('components.home-page-category-section'));
+        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->take(4)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
+        return view(theme('components.home-page-category-section'), compact('top_courses'));
     }
 }
