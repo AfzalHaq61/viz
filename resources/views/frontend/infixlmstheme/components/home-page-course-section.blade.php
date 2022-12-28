@@ -16,7 +16,7 @@
             <div class="row">
                 @if(isset($top_courses))
                 @foreach($top_courses as $course)
-                <div class="col-lg-4 col-xl-3 col-md-6">
+                <div class="col-lg-4 col-xl-3 col-md-6 mb-4">
                     <div class="couse_wizged">
                         <a href="{{courseDetailsUrl(@$course->id,@$course->type,@$course->slug)}}">
                             <div class="thumb">

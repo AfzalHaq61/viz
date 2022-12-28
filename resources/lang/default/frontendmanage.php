@@ -348,5 +348,7 @@ return [
     'Cta Lower Title' => 'Cta Lower Title',
     'Show App Download Button' => 'Show App Download Button',
     'Show Contact Page Faq' => 'Show Contact Page Faq',
-    'Page Banner Show' => 'Page Banner Show'
+    'Page Banner Show' => 'Page Banner Show',
+    
+    "Video Url" => "Video Url",
 ];

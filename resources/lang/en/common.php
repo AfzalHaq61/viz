@@ -552,5 +552,6 @@ return [
     'Confirmation' => 'Confirmation',
     'Password did not match with your account password' => 'Password did not match with your account password',
     'Level' => 'Level',
-    'At least one correct answer is required' => 'At least one correct answer is required'
+    'At least one correct answer is required' => 'At least one correct answer is required',
+    "Future course" => "Future course",
 ];

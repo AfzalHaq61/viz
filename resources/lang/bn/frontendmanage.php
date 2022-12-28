@@ -174,4 +174,6 @@ return [
     'Image 3' => 'ছবি 3',
     'Image 4' => 'ছবি 4',
     'Slug' => 'Slug',
+
+    "Video Url" => "Video Url",
 ];

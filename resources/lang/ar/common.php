@@ -654,4 +654,6 @@ return [
 
 "failed" => "بيانات الاعتماد هذه لا تطابق سجلاتنا.",
 
+"Future course" => "Future course",
+
 ];

@@ -151,5 +151,7 @@
     'Image 2' => 'Imagen 2',
     'Image 3' => 'Imagen 3',
     'Image 4' => 'Imagen 4',
+
+    "Video Url" => "Video Url",
         ]
 ?>

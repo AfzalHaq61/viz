@@ -411,5 +411,6 @@ return [
 "Courses" => "البرامج التدريبية",
 
 "Course Title" => "عنوان البرنامج التدريبي",
+"Video Url" => "Video Url",
 
 ];

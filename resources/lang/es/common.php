@@ -273,5 +273,6 @@
     'No data available in the table' => 'No hay datos disponibles en la tabla',
     'Make Paid' => 'Hacer pagar',
     'Request For Paid' => 'Solicitud de pago',
+    "Future course" => "Future course",
         ]
 ?>
