@@ -153,5 +153,9 @@
     'Image 4' => 'Imagen 4',
 
     "Video Url" => "Video Url",
+    "Instructor Button" => "Instructor Button",
+    "Instructor Testemonial Title" => "Instructor Testemonial Title",
+    "Instructor Testemonial Subtitle" => "Instructor Testemonial Subtitle",
+    "Populer Section Show in Instructor Page" => 'Populer Section Show in Instructor Page',
         ]
 ?>

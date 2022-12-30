@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Modules\CourseSetting\Entities\Course;
 
 class FrontPageSection extends Component
 {
@@ -18,6 +19,8 @@ class FrontPageSection extends Component
 
     public function render()
     {
-        return view(theme('components.front-page-section'));
+        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->take(4)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
+
+        return view(theme('components.front-page-section'), compact('top_courses'));
     }
 }

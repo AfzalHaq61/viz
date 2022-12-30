@@ -40,6 +40,7 @@ use Modules\BundleSubscription\Entities\BundleCoursePlan;
 use Modules\Newsletter\Http\Controllers\AcelleController;
 use Modules\Certificate\Http\Controllers\CertificateController;
 use Modules\CourseSetting\Entities\FutureCourse;
+use Modules\FrontendManage\Entities\HomeContent;
 use Modules\Subscription\Http\Controllers\CourseSubscriptionController;
 
 class WebsiteController extends Controller
@@ -54,7 +55,8 @@ class WebsiteController extends Controller
     {
         try {
             $about = AboutPage::first();
-            return view(theme('pages.about'), compact('about'));
+            $homeContent = HomeContent::where('key', 'video_url')->first();
+            return view(theme('pages.about'), compact('about', 'homeContent'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -113,7 +115,6 @@ class WebsiteController extends Controller
     {
 
         return view(theme('pages.searchCertificate'));
-
     }
 
     public function showCertificate(Request $request)
@@ -156,8 +157,6 @@ class WebsiteController extends Controller
             } else {
                 return Redirect::back()->withErrors(['msg', 'Invalid Certificate Number']);
             }
-
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -266,7 +265,6 @@ class WebsiteController extends Controller
             return view(theme('pages.privacy'), compact('privacy_policy'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
-
         }
     }
 
@@ -329,7 +327,6 @@ class WebsiteController extends Controller
                                 $score += $test->mark ?? 1;
                                 $totalCorrect++;
                             }
-
                         }
                     }
 
@@ -380,8 +377,6 @@ class WebsiteController extends Controller
                         $lesson->status = 1;
                         $lesson->save();
                     }
-
-
                 }
             }
 
@@ -408,7 +403,6 @@ class WebsiteController extends Controller
                         $isEnrolled = true;
                     }
                 }
-
             } else {
                 $isEnrolled = true;
             }
@@ -452,7 +446,6 @@ class WebsiteController extends Controller
                                             $show = true;
                                         }
                                     }
-
                                 }
                             }
 
@@ -462,11 +455,7 @@ class WebsiteController extends Controller
                         } else {
                             $lessons[] = $data;
                         }
-
-
                     }
-
-
                 } else {
                     $lessons = $all;
                 }
@@ -486,7 +475,6 @@ class WebsiteController extends Controller
                         if (strtotime($unlock_lesson_date) == strtotime($today)) {
                             $lessonShow = true;
                         }
-
                     }
 
                     if (!empty($unlock_lesson_days)) {
@@ -501,11 +489,9 @@ class WebsiteController extends Controller
 
                                 if (strtotime($unlock_lesson) <= strtotime($today)) {
                                     $lessonShow = true;
-
                                 }
                             }
                         }
-
                     }
                 } else {
                     $lessonShow = true;
@@ -551,7 +537,6 @@ class WebsiteController extends Controller
                 foreach ($all as $item) {
                     if ($c->id == $item->chapter_id) {
                         $lesson_ids[] = $item->id;
-
                     }
                 }
             }
@@ -588,7 +573,6 @@ class WebsiteController extends Controller
                 }
             }
             return view(theme('pages.fullscreen_video'), compact('quizPass', 'alreadyJoin', 'lesson_ids', 'result', 'preResult', 'quizSetup', 'chapters', 'reviewer_user_ids', 'percentage', 'isEnrolled', 'total', 'certificate', 'course', 'lesson', 'lessons'));
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -633,7 +617,6 @@ class WebsiteController extends Controller
                 $data['playbackInfo'] = $response->playbackInfo;
             }
         } catch (\Exception $e) {
-
         }
         return $data;
     }
@@ -684,7 +667,6 @@ class WebsiteController extends Controller
                         Toastr::error('Already subscribe!', 'Failed');
                     }
                     return Redirect::back();
-
                 } elseif ($newsletterSetting->home_service == "Mailchimp") {
                     if (saasEnv('MailChimp_Status') == "true") {
                         $list = $newsletterSetting->home_list_id;
@@ -747,7 +729,6 @@ class WebsiteController extends Controller
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
 
@@ -768,12 +749,9 @@ class WebsiteController extends Controller
             } else {
                 return view(theme('pages.myCart2'));
             }
-
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
     public function addToCart($id)
@@ -825,7 +803,6 @@ class WebsiteController extends Controller
                             $cart->price = $course->price;
                         }
                         $cart->save();
-
                     } else {
 
 
@@ -846,7 +823,6 @@ class WebsiteController extends Controller
                     Toastr::success('Course Added to your cart', 'Success');
                     return redirect()->back();
                 }
-
             } //If user not logged in then cart added into session
 
             else {
@@ -900,10 +876,7 @@ class WebsiteController extends Controller
 
                     Toastr::success('Course Added to your cart', 'Success');
                     return redirect()->back();
-
                 }
-
-
             }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -912,12 +885,16 @@ class WebsiteController extends Controller
 
     public function buyNow($id)
     {
+
         try {
             if (!Auth::check()) {
                 Toastr::error('You must login', 'Error');
                 return \redirect()->route('login');
             }
             $course = Course::find($id);
+            if ($course->future_course == 1) {
+                return redirect()->back();
+            }
             if (!$course) {
                 Toastr::error('Course not found', 'Failed');
                 return redirect()->back();
@@ -964,7 +941,6 @@ class WebsiteController extends Controller
                             $cart->price = $course->price;
                         }
                         $cart->save();
-
                     } else {
                         $cart = new Cart();
                         $cart->user_id = $user->id;
@@ -983,7 +959,6 @@ class WebsiteController extends Controller
                     Toastr::success('Course Added to your cart', 'Success');
                     return redirect()->route('CheckOut');
                 }
-
             } //If user not logged in then cart added into session
 
             else {
@@ -1024,7 +999,6 @@ class WebsiteController extends Controller
                 } else {
 
                     $cart[$id] = [
-
                         "id" => $course->id,
                         "course_id" => $course->id,
                         "instructor_id" => $course->user_id,
@@ -1040,10 +1014,7 @@ class WebsiteController extends Controller
 
                     Toastr::success('Course Added to your cart', 'Success');
                     return redirect()->route('CheckOut');
-
                 }
-
-
             }
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -1215,7 +1186,6 @@ class WebsiteController extends Controller
         $levels = CourseLevel::select('id', 'title')->where('status', 1)->get();
 
         return view(theme('pages.search'), compact('levels', 'order', 'level', 'order', 'mode', 'language', 'type', 'total', 'courses', 'request', 'id'));
-
     }
 
 
@@ -1235,7 +1205,6 @@ class WebsiteController extends Controller
                             <a style="color:black" href="' . courseDetailsUrl(@$row->id, @$row->type, @$row->slug) . '">' . $row->title . '</a>
                         </li>
                         ';
-
             }
             $output .= '</ul>';
             echo $output;
@@ -1284,9 +1253,7 @@ class WebsiteController extends Controller
                     } else {
                         return response()->json(['error' => 'Already Submitted'], 500);
                     }
-
                 }
-
             }
 
             if ($show_result_each_submit == 1) {
@@ -1301,10 +1268,7 @@ class WebsiteController extends Controller
                 return response()->json(['result' => $result], 200);
             } else {
                 return response()->json(['submit' => true], 200);
-
             }
-
-
         } else {
             return response()->json(['error' => 'Something Went Wrong'], 500);
         }
@@ -1333,10 +1297,9 @@ class WebsiteController extends Controller
 
                         $score += $ans->question->marks ?? 1;
                         $totalCorrect++;
-//                        $totalScore +=$ans->
+                        //                        $totalScore +=$ans->
                     }
                 }
-
             }
         } else {
             $hasResult = false;
@@ -1408,7 +1371,6 @@ class WebsiteController extends Controller
         if ($send) {
             Toastr::success('Successfully Sent Message', trans('common.Success'));
             return redirect()->back();
-
         } else {
             Toastr::error('Something went wrong', trans('common.Failed'));
             return redirect()->back();
@@ -1432,16 +1394,14 @@ class WebsiteController extends Controller
 
             $futureCourses = [];
 
-            if(isset($page) && ($page->slug == 'future-courses')) {
+            if (isset($page) && ($page->slug == 'future-courses')) {
                 $futureCourses = FutureCourse::latest()->get();
             }
 
             return view(theme('pages.page'), compact('page', 'futureCourses'));
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
 
@@ -1505,7 +1465,6 @@ class WebsiteController extends Controller
                                 $cart->price = $course->price;
                             }
                             $cart->save();
-
                         } else {
                             $cart = new Cart();
                             $cart->user_id = $user->id;
@@ -1528,7 +1487,6 @@ class WebsiteController extends Controller
                     $output['result'] = 'failed';
                     $output['message'] = 'Already Enrolled ';
                 }
-
             } //If user not logged in then cart added into session
 
             else {
@@ -1537,7 +1495,6 @@ class WebsiteController extends Controller
                 if (!$course) {
                     $output['result'] = 'failed';
                     $output['message'] = 'Course not found';
-
                 }
 
                 if ($course->discount_price > 0) {
@@ -1589,9 +1546,7 @@ class WebsiteController extends Controller
                     $output['result'] = 'success';
                     $output['total'] = cartItem();
                     $output['message'] = 'Course Added to your cart';
-
                 }
-
             }
         } catch (\Exception $e) {
             $output['result'] = 'failed';
@@ -1636,11 +1591,8 @@ class WebsiteController extends Controller
                             $carts[$key]['price'] = getPriceFormat($bundleCheck->price);
                         }
                     }
-
                 }
             }
-
-
         } else {
             $items = session()->get('cart');
             if (!empty($items)) {
@@ -1663,8 +1615,6 @@ class WebsiteController extends Controller
                     }
                 }
             }
-
-
         }
 
 
@@ -1707,12 +1657,15 @@ class WebsiteController extends Controller
                     }
                     if (UserBrowserNotificationSetup('Complete_Course', Auth::user())) {
 
-                        send_browser_notification(Auth::user(), $type = 'Complete_Course', $shortcodes = [
-                            'time' => Carbon::now()->format('d-M-Y ,s:i A'),
-                            'course' => $course->title
-                        ],
-                            '',//actionText
-                            ''//actionUrl
+                        send_browser_notification(
+                            Auth::user(),
+                            $type = 'Complete_Course',
+                            $shortcodes = [
+                                'time' => Carbon::now()->format('d-M-Y ,s:i A'),
+                                'course' => $course->title
+                            ],
+                            '', //actionText
+                            '' //actionUrl
                         );
                     }
                 }
@@ -1724,13 +1677,10 @@ class WebsiteController extends Controller
             $previousUrl = app('url')->previous();
 
             return redirect()->to($previousUrl . '&' . http_build_query(['done' => 1]));
-
-
         } catch (\Exception $e) {
 
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
     public function lessonCompleteAjax(Request $request)
@@ -1794,24 +1744,24 @@ class WebsiteController extends Controller
                     }
                     if (UserBrowserNotificationSetup('Complete_Course', $user)) {
 
-                        send_browser_notification($user, $type = 'Complete_Course', $shortcodes = [
-                            'time' => Carbon::now()->format('d-M-Y ,s:i A'),
-                            'course' => $course->title
-                        ],
-                            '',//actionText
-                            ''//actionUrl
+                        send_browser_notification(
+                            $user,
+                            $type = 'Complete_Course',
+                            $shortcodes = [
+                                'time' => Carbon::now()->format('d-M-Y ,s:i A'),
+                                'course' => $course->title
+                            ],
+                            '', //actionText
+                            '' //actionUrl
                         );
                     }
                 }
             }
 
             return true;
-
-
         } catch (\Exception $e) {
             return false;
         }
-
     }
 
     public function getCertificateRecord($course_id)
@@ -1850,7 +1800,6 @@ class WebsiteController extends Controller
                                 $certificate_record->start_date = $checkout->start_date;
                                 $certificate_record->end_date = $checkout->end_date;
                             }
-
                         } else {
                             $certificate_record->start_date = $course->created_at;
                             $certificate_record->end_date = '';
@@ -1873,13 +1822,11 @@ class WebsiteController extends Controller
                     $certificate->encode('jpg');
 
                     $certificate->save('public/certificate/' . $certificate_record->id . '.jpg');
-
                 }
                 return $certificate_record;
             } else {
                 return null;
             }
-
         } catch (\Exception $e) {
             return null;
         }
@@ -1900,7 +1847,6 @@ class WebsiteController extends Controller
         try {
 
             return view(theme('pages.subscription-courses'));
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -1916,7 +1862,6 @@ class WebsiteController extends Controller
         try {
 
             return view(theme('pages.org-subscription-courses'), compact('request'));
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -1930,7 +1875,6 @@ class WebsiteController extends Controller
 
         try {
             return view(theme('pages.org-subscription-plan-list'), compact('request', 'planId'));
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -1942,7 +1886,6 @@ class WebsiteController extends Controller
 
 
             return view(theme('pages.subscription'));
-
         } else {
             Toastr::error('Module not active', 'Error');
             return redirect()->back();
@@ -1995,7 +1938,6 @@ class WebsiteController extends Controller
                         Toastr::error('You must login as a student', 'Error');
                         return \redirect()->route('courseSubscription');
                     }
-
                 } else {
                     Toastr::error('You must login', 'Error');
                     return \redirect()->route('login');
@@ -2008,7 +1950,6 @@ class WebsiteController extends Controller
 
 
         return view(theme('pages.subscriptionCheckout'), compact('request', 's_plan', 'price'));
-
     }
 
 
@@ -2063,13 +2004,10 @@ class WebsiteController extends Controller
                     Toastr::error('There is no lesson for this course!', 'Failed');
                     return redirect()->route('courseDetailsView', $slug);
                 }
-
-
             } else {
                 Toastr::error('You are not enrolled for this course !', 'Failed');
                 return redirect()->route('courseDetailsView', $slug);
             }
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }

@@ -64,6 +64,11 @@
         @if (permissionCheck('frontend.page.index'))
             <li><a href="{{ route('frontend.page.index') }}"> {{ __('frontendmanage.Pages') }}</a></li>
         @endif
+        {{-- Instructor page --}}
+        @if (permissionCheck('frontend.instructor'))
+            <li><a href="{{ route('frontend.instructor') }}"> {{ __('frontendmanage.Instructor') }}</a>
+            </li>
+        @endif
         @if (permissionCheck('frontend.becomeInstructor'))
             <li><a href="{{ route('frontend.becomeInstructor') }}"> {{ __('frontendmanage.Become Instructor') }}</a>
             </li>

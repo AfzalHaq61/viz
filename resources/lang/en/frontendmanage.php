@@ -61,7 +61,7 @@ return [
     'Topbar' => 'Topbar',
     'Footer' => 'Footer',
 
-// Testimonial
+    // Testimonial
     'Testimonial' => 'Testimonial',
     'Add New Testimonial' => 'Add New Testimonial',
     'Update Testimonial' => 'Update Testimonial',
@@ -71,7 +71,7 @@ return [
     'Body Text' => 'Body Text',
     'Enter Author Name' => 'Enter Author Name',
     'Enter Profession' => 'Enter Profession',
-// Home Content
+    // Home Content
     'Home Content' => 'Home Content',
     'Page Content' => 'Page Content',
     'Slider Title' => 'Slider Title',
@@ -82,19 +82,19 @@ return [
     'Payment Getway Image' => 'Payment Getway Image',
     'Testimonial Title' => 'Testimonial Title',
 
-// Slider
+    // Slider
     'Sliders' => 'Sliders',
     'Add New Slider' => 'Add New Slider',
     'Update Slider' => 'Update Slider',
     'Position No' => 'Position No',
     'Home Slider' => 'Home Slider',
 
-// student profile
+    // student profile
     'My Profile' => 'My Profile',
     'Social Name' => 'Social Name',
     'Update Social Setting' => 'Update Social Setting',
 
-//privacy policy
+    //privacy policy
     'Privacy Policy' => 'Privacy Policy',
     'General' => 'General',
     'Personal Data' => 'Personal Data',
@@ -351,4 +351,8 @@ return [
     'Page Banner Show' => 'Page Banner Show',
 
     "Video Url" => "Video Url",
+    "Instructor Button" => "Instructor Button",
+    "Instructor Testemonial Title" => "Instructor Testemonial Title",
+    "Instructor Testemonial Subtitle" => "Instructor Testemonial Subtitle",
+    "Populer Section Show in Instructor Page" => 'Populer Section Show in Instructor Page',
 ];

@@ -691,6 +691,11 @@ class FrontendManageController extends Controller
             foreach ((array)$request->banner_title as $key => $banner_title) {
                 $about->setTranslation('banner_title', $key, $banner_title);
             }
+
+            if ($request->file('banner_image') != "") {
+                $about->banner_image = $this->saveImage($request->banner_image);
+            }
+
             foreach ((array)$request->story_title as $key => $value) {
                 $about->setTranslation('story_title', $key, $value);
             }
@@ -788,7 +793,6 @@ class FrontendManageController extends Controller
 
                 $about->image2 = $this->saveImage($request->image2);
             }
-
 
             if ($request->image3 != null) {
 

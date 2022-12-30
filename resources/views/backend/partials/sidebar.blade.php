@@ -150,13 +150,13 @@
                                         </li>
                                     @endif
 
-                                    @if (permissionCheck('getFutureCourse'))
+                                    {{-- @if (permissionCheck('getFutureCourse'))
                                     <li>
                                         <a href="{{ route('getFutureCourse') }}">
                                             {{ __('courses.Future') }} {{ __('courses.Courses') }}
                                         </a>
                                     </li>
-                                    @endif
+                                    @endif --}}
 
                                 @endif
                                 @if(isModuleActive('Assignment'))
@@ -237,13 +237,13 @@
                                         <a href="{{ route('getPendingCourse') }}">{{ __('courses.Pending') }} {{ __('courses.Courses') }}</a>
                                     </li>
                                 @endif
-                                @if (permissionCheck('getFutureCourse'))
+                                {{-- @if (permissionCheck('getFutureCourse'))
                                     <li>
                                         <a href="{{ route('getFutureCourse') }}">
                                             {{ __('courses.Future') }} {{ __('courses.Courses') }}
                                         </a>
                                     </li>
-                                @endif
+                                @endif --}}
                             @endif
                             @if(isModuleActive('Assignment'))
                                 <li>

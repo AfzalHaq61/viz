@@ -1,5 +1,7 @@
 @extends(theme('layouts.master'))
-@section('title'){{Settings('site_title')  ? Settings('site_title')  : 'Infix LMS'}} | {{__('frontend.Instructor')}} @endsection
+@section('title')
+    {{ Settings('site_title') ? Settings('site_title') : 'Infix LMS' }} | {{ __('frontend.Instructor') }}
+@endsection
 @section('css')
     <style>
 
@@ -8,11 +10,10 @@
 @endsection
 @section('js')
     <script>
-
-        var SITEURL = "{{route('instructors')}}";
+        var SITEURL = "{{ route('instructors') }}";
         var page = 1;
         load_more(page);
-        $(window).scroll(function () {
+        $(window).scroll(function() {
             console.log($(window).scrollTop());
             console.log($(window).height());
             console.log($("#results").height());
@@ -26,14 +27,14 @@
 
         function load_more(page) {
             $.ajax({
-                url: SITEURL + "?page=" + page,
-                type: "get",
-                datatype: "html",
-                beforeSend: function () {
-                    $('.ajax-loading').show();
-                }
-            })
-                .done(function (data) {
+                    url: SITEURL + "?page=" + page,
+                    type: "get",
+                    datatype: "html",
+                    beforeSend: function() {
+                        $('.ajax-loading').show();
+                    }
+                })
+                .done(function(data) {
                     if (data.length == 0) {
 
                         //notify user if nothing to load
@@ -45,22 +46,17 @@
 
 
                 })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
                     console.log('No response from server');
                 });
 
         }
     </script>
-
 @endsection
 
 @section('mainContent')
+    <x-breadcrumb :banner="$frontendContent->instructor_page_banner" :title="$frontendContent->instructor_page_title" :subTitle="$frontendContent->instructor_page_sub_title" />
 
 
-    <x-breadcrumb :banner="$frontendContent->instructor_page_banner" :title="$frontendContent->instructor_page_title"
-                  :subTitle="$frontendContent->instructor_page_sub_title"/>
-
-
-    <x-instructors-page-populer-section :instructors="$instructors"/>
-
+    <x-instructors-page-populer-section :instructors="$instructors" :testemonial="$frontendContent"/>
 @endsection

@@ -18,11 +18,11 @@
     <x-breadcrumb :banner="$frontendContent->about_page_banner" :title="$frontendContent->about_page_title"
                   :subTitle="$frontendContent->about_page_title"/>
 
-    <x-about-page-who-we-are :whoWeAre="$about->who_we_are" :bannerTitle="$about->banner_title"/>
+    <x-about-page-who-we-are :about="$about"/>
 
     <div class="row">
         <div class="col-12 col-sm-8 mx-auto mb-5">
-            <iframe width="100%" height="500" src="https://www.youtube.com/embed/A1yoIlVlpHM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="100%" height="500" src="{{ 'https:\/\/www.youtube.com\/embed\/'.explode("=",$homeContent->video_url)[1] }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 

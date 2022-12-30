@@ -75,7 +75,11 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     //Page Builder
     Route::resource('page', 'FrontPageController');
 
+    // instructor
+    Route::get('instructor', 'InstructorSettingController@index')->name('instructor');
+    Route::post('instructor', 'InstructorSettingController@update')->name('instructor_update');
 
+    // become instructor
     Route::get('/becomeInstructor', 'BecomeInstructorSettingController@index')->name('becomeInstructor');
     Route::get('/becomeInstructorStore/{id}', 'BecomeInstructorSettingController@store')->name('becomeInstructorStore');
     Route::get('/becomeInstructorEdit/{id}', 'BecomeInstructorSettingController@edit')->name('becomeInstructorEdit');

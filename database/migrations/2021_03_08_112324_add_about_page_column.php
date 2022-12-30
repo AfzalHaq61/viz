@@ -28,7 +28,6 @@ class AddAboutPageColumn extends Migration
                 $table->string('image4')->default('public/frontend/infixlmstheme/img/about/counter_bg.png');
             }
 
-
         });
     }
 

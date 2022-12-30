@@ -1383,6 +1383,22 @@
                                                                                                         value="{{ isset($home_content) ? getRawHomeContents($home_content, 'instructor_sub_title', $language->code) : '' }}">
                                                                                                 </div>
                                                                                             </div>
+
+                                                                                            <div class="col-xl-12">
+                                                                                                <div
+                                                                                                    class="primary_input mb-25">
+                                                                                                    <label
+                                                                                                        class="primary_input_label"
+                                                                                                        for="">{{ __('frontendmanage.Instructor Button') }}</label>
+                                                                                                    <input
+                                                                                                        class="primary_input_field"
+                                                                                                        placeholder="{{ __('frontendmanage.Instructor Button') }}"
+                                                                                                        type="text"
+                                                                                                        name="instructor_button[{{ $language->code }}]"
+                                                                                                        {{ $errors->has('instructor_button') ? ' autofocus' : '' }}
+                                                                                                        value="{{ isset($home_content) ? getRawHomeContents($home_content, 'instructor_button', $language->code) : '' }}">
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 @endforeach

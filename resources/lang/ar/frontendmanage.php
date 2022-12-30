@@ -1,416 +1,422 @@
 <?php
 return [
-"Frontend CMS" => "الواجهة الأمامية CMS",
+    "Frontend CMS" => "الواجهة الأمامية CMS",
 
-"Section Setting" => "محددات القسم",
+    "Section Setting" => "محددات القسم",
 
-"Social Setting" => "محددات اجتماعية",
+    "Social Setting" => "محددات اجتماعية",
 
-"Company" => "الشركة",
+    "Company" => "الشركة",
 
-"Become Instructor" => "المعلم يصبح",
+    "Become Instructor" => "المعلم يصبح",
 
-"Testimonials" => "شهادات",
+    "Testimonials" => "شهادات",
 
-"FAQS" => "AQS",
+    "FAQS" => "AQS",
 
-"Footer Section" => "قسم نص الطرف",
+    "Footer Section" => "قسم نص الطرف",
 
-"Social Site Manage" => "ادارة الموقع الاجتماعي",
+    "Social Site Manage" => "ادارة الموقع الاجتماعي",
 
-"Home" => "الصفحة الرئيسية",
+    "Home" => "الصفحة الرئيسية",
 
-"Enter social  link" => "أدخل وصلة اجتماعية",
+    "Enter social  link" => "أدخل وصلة اجتماعية",
 
-"Add New Section Setting" => "اضافة محددات قسم جديدة",
+    "Add New Section Setting" => "اضافة محددات قسم جديدة",
 
-"Add New Social Setting" => "اضافة محددات اجتماعية جديدة",
+    "Add New Social Setting" => "اضافة محددات اجتماعية جديدة",
 
-"Update Section Setting" => "تعديل محددات القسم",
+    "Update Section Setting" => "تعديل محددات القسم",
 
-"Section List" => "كشف القسم",
+    "Section List" => "كشف القسم",
 
-"Section" => "القسم",
+    "Section" => "القسم",
 
-"Button Name" => "اسم الاختيار",
+    "Button Name" => "اسم الاختيار",
 
-"Button Link" => "وصلة الاختيار",
+    "Button Link" => "وصلة الاختيار",
 
-"Icon" => "الشارة",
+    "Icon" => "الشارة",
 
-"Link" => "وصلة",
+    "Link" => "وصلة",
 
-"Topbar" => "خط الموضوع",
+    "Topbar" => "خط الموضوع",
 
-"Footer" => "نص الطرف",
+    "Footer" => "نص الطرف",
 
-"Testimonial" => "شهادة",
+    "Testimonial" => "شهادة",
 
-"Add New Testimonial" => "اضافة شهادة جديدة",
+    "Add New Testimonial" => "اضافة شهادة جديدة",
 
-"Update Testimonial" => "تحديث الشهود",
+    "Update Testimonial" => "تحديث الشهود",
 
-"Profession" => "المهنة",
+    "Profession" => "المهنة",
 
-"Body Text" => "نص النص",
+    "Body Text" => "نص النص",
 
-"Enter Author Name" => "أدخل اسم المؤلف",
+    "Enter Author Name" => "أدخل اسم المؤلف",
 
-"Enter Profession" => "أدخل المهنة",
+    "Enter Profession" => "أدخل المهنة",
 
-"Home Content" => "المحتويات الرئيسية",
+    "Home Content" => "المحتويات الرئيسية",
 
-"Page Content" => "محتويات الصفحة",
+    "Page Content" => "محتويات الصفحة",
 
-"Slider Title" => "عنوان الشريحة المنزلقة",
+    "Slider Title" => "عنوان الشريحة المنزلقة",
 
-"Payment Getway Title" => "عنوان GetWindole",
+    "Payment Getway Title" => "عنوان GetWindole",
 
-"Slider Text" => "النص المنزلق",
+    "Slider Text" => "النص المنزلق",
 
-"Payment Getway Text" => "نص Getلطريقة للدفع",
+    "Payment Getway Text" => "نص Getلطريقة للدفع",
 
-"Slider Shape Image" => "صورة الشريحة المنزلقة",
+    "Slider Shape Image" => "صورة الشريحة المنزلقة",
 
-"Payment Getway Image" => "صورة Getage للسداد",
+    "Payment Getway Image" => "صورة Getage للسداد",
 
-"Testimonial Title" => "عنوان الزوجية",
+    "Testimonial Title" => "عنوان الزوجية",
 
-"Sliders" => "الشرائح المنزلقة",
+    "Sliders" => "الشرائح المنزلقة",
 
-"Add New Slider" => "اضافة شريحة منزلقة جديدة",
+    "Add New Slider" => "اضافة شريحة منزلقة جديدة",
 
-"Update Slider" => "تعديل الشريحة المنزلقة",
+    "Update Slider" => "تعديل الشريحة المنزلقة",
 
-"Position No" => "مكان لا",
+    "Position No" => "مكان لا",
 
-"Home Slider" => "شريحة منزلقة المنزل",
+    "Home Slider" => "شريحة منزلقة المنزل",
 
-"Social Name" => "الاسم الاجتماعي",
+    "Social Name" => "الاسم الاجتماعي",
 
-"Update Social Setting" => "تحديث المحددات الاجتماعية",
+    "Update Social Setting" => "تحديث المحددات الاجتماعية",
 
-"Privacy Policy" => "سياسة الخصوصية",
+    "Privacy Policy" => "سياسة الخصوصية",
 
-"General" => "عام",
+    "General" => "عام",
 
-"Personal Data" => "البيانات الشخصية",
+    "Personal Data" => "البيانات الشخصية",
 
-"Voluntary Disclosure" => "الكشف الطوعي",
+    "Voluntary Disclosure" => "الكشف الطوعي",
 
-"Children Privacy" => "خصوصية الأطفال",
+    "Children Privacy" => "خصوصية الأطفال",
 
-"Information About Cookies" => "معلومات عن Cookies",
+    "Information About Cookies" => "معلومات عن Cookies",
 
-"Thirt Party Advertising" => "الإعلان عن طرف ثالث",
+    "Thirt Party Advertising" => "الإعلان عن طرف ثالث",
 
-"Other Sites" => "مواقع أخرى",
+    "Other Sites" => "مواقع أخرى",
 
-"Teacher" => "المعلم",
+    "Teacher" => "المعلم",
 
-"Business Transfer" => "نقل الأعمال",
+    "Business Transfer" => "نقل الأعمال",
 
-"Banner Title" => "عنوان اللوحة الاعلانية",
+    "Banner Title" => "عنوان اللوحة الاعلانية",
 
-"Banner Description" => "وصف خط العنوان",
+    "Banner Description" => "وصف خط العنوان",
 
-"Banner Image" => "صورة خط العنوان",
+    "Banner Image" => "صورة خط العنوان",
 
-"Mission Title" => "عنوان المهمة",
+    "Mission Title" => "عنوان المهمة",
 
-"Mission Description" => "وصف البعثة",
+    "Mission Description" => "وصف البعثة",
 
-"Mission Image" => "صورة المهمة",
+    "Mission Image" => "صورة المهمة",
 
-"Story Title" => "عنوان القصة",
+    "Story Title" => "عنوان القصة",
 
-"Story Description" => "وصف القصة",
+    "Story Description" => "وصف القصة",
 
-"Story Image" => "صورة القصة",
+    "Story Image" => "صورة القصة",
 
-"Invite Title" => "عنوان الدعوة",
+    "Invite Title" => "عنوان الدعوة",
 
-"Invite Description" => "وصف الدعوة",
+    "Invite Description" => "وصف الدعوة",
 
-"Invite Image" => "صورة دعوة",
+    "Invite Image" => "صورة دعوة",
 
-"About Content" => "نبذة عن المحتويات",
+    "About Content" => "نبذة عن المحتويات",
 
-"Remove Photo" => "ازالة الصورة",
+    "Remove Photo" => "ازالة الصورة",
 
-"Upload Profile Photo" => "تحميل صورة ملف المواصفات",
+    "Upload Profile Photo" => "تحميل صورة ملف المواصفات",
 
-"Pages" => "الصفحات",
+    "Pages" => "الصفحات",
 
-"Page" => "الصفحة",
+    "Page" => "الصفحة",
 
-"Previous Billing Address" => "عنوان الفواتير السابق",
+    "Previous Billing Address" => "عنوان الفواتير السابق",
 
-"New Billing Address" => "عنوان الفواتير الجديد",
+    "New Billing Address" => "عنوان الفواتير الجديد",
 
-"Billing Address" => "عنوان الفواتير",
+    "Billing Address" => "عنوان الفواتير",
 
-"Select Billing Address" => "تحديد عنوان الفواتير",
+    "Select Billing Address" => "تحديد عنوان الفواتير",
 
-"Company Name" => "اسم الشركة",
+    "Company Name" => "اسم الشركة",
 
-"Subscriber" => "مشترك",
+    "Subscriber" => "مشترك",
 
-"Billing Details" => "تفاصيل الفواتير",
+    "Billing Details" => "تفاصيل الفواتير",
 
-"Payment Method" => "طريقة السداد",
+    "Payment Method" => "طريقة السداد",
 
-"Created At" => "تكوين في",
+    "Created At" => "تكوين في",
 
-"Subscribe At" => "الاشتراك في",
+    "Subscribe At" => "الاشتراك في",
 
-"Who We Are" => "من نحن ؟",
+    "Who We Are" => "من نحن ؟",
 
-"Teacher Title" => "عنوان المدرس",
+    "Teacher Title" => "عنوان المدرس",
 
-"Teacher Details" => "تفاصيل المعلم",
+    "Teacher Details" => "تفاصيل المعلم",
 
-"Student Title" => "عنوان الطالب",
+    "Student Title" => "عنوان الطالب",
 
-"Student Details" => "تفاصيل الطالب",
+    "Student Details" => "تفاصيل الطالب",
 
-"Course Details" => "تفاصيل البرنامج التدريبي",
+    "Course Details" => "تفاصيل البرنامج التدريبي",
 
-"Youtube Video Link" => "وصلة فيديو Youbube",
+    "Youtube Video Link" => "وصلة فيديو Youbube",
 
-"Browse Image" => "تصفح الصورة",
+    "Browse Image" => "تصفح الصورة",
 
-"Login Page" => "صفحة بدء الاتصال",
+    "Login Page" => "صفحة بدء الاتصال",
 
-"Slogan 1" => "شعار 1",
+    "Slogan 1" => "شعار 1",
 
-"Slogan 2" => "شعار 2",
+    "Slogan 2" => "شعار 2",
 
-"Slogan 3" => "شعار 3",
+    "Slogan 3" => "شعار 3",
 
-"Category Title" => "عنوان الفئة",
+    "Category Title" => "عنوان الفئة",
 
-"Category Sub Title" => "العنوان الفرعي للفئة",
+    "Category Sub Title" => "العنوان الفرعي للفئة",
 
-"Instructor  Banner" => "اللوحة الاعلانية للمعلم",
+    "Instructor  Banner" => "اللوحة الاعلانية للمعلم",
 
-"Instructor Title" => "عنوان المعلم",
+    "Instructor Title" => "عنوان المعلم",
 
-"Instructor Sub Title" => "العنوان الفرعي للمعلم",
+    "Instructor Sub Title" => "العنوان الفرعي للمعلم",
 
-"Course Sub Title" => "العنوان الفرعي للبرنامج التدريبي",
+    "Course Sub Title" => "العنوان الفرعي للبرنامج التدريبي",
 
-"Best Category  Banner" => "أفضل شعار للفئة",
+    "Best Category  Banner" => "أفضل شعار للفئة",
 
-"Best Course Title" => "أفضل عنوان للبرنامج التدريبي",
+    "Best Course Title" => "أفضل عنوان للبرنامج التدريبي",
 
-"Best Course Sub Title" => "أفضل عنوان فرعي للبرنامج التدريبي",
+    "Best Course Sub Title" => "أفضل عنوان فرعي للبرنامج التدريبي",
 
-"Quiz Title" => "عنوان العرض",
+    "Quiz Title" => "عنوان العرض",
 
-"Testimonial Sub Title" => "عنوان فرعي للشهادة",
+    "Testimonial Sub Title" => "عنوان فرعي للشهادة",
 
-"Article Title" => "المادة العنوان",
+    "Article Title" => "المادة العنوان",
 
-"Article Sub Title" => "العنوان الفرعي للمادة",
+    "Article Sub Title" => "العنوان الفرعي للمادة",
 
-"Course Page Title" => "عنوان صفحة البرنامج التدريبي",
+    "Course Page Title" => "عنوان صفحة البرنامج التدريبي",
 
-"Course Page Sub Title" => "العنوان الفرعي لصفحة البرنامج التدريبي",
+    "Course Page Sub Title" => "العنوان الفرعي لصفحة البرنامج التدريبي",
 
-"Course Page Banner" => "خط عنوان صفحة البرنامج التدريبي",
+    "Course Page Banner" => "خط عنوان صفحة البرنامج التدريبي",
 
-"Class Page Title" => "عنوان صفحة الفئة",
+    "Class Page Title" => "عنوان صفحة الفئة",
 
-"Class Page Sub Title" => "العنوان الفرعي لصفحة الفئة",
+    "Class Page Sub Title" => "العنوان الفرعي لصفحة الفئة",
 
-"Class Page Banner" => "لوحة اعلانية صفحة الفئة",
+    "Class Page Banner" => "لوحة اعلانية صفحة الفئة",
 
-"Quiz Page Title" => "عنوان صفحة  اختبار",
+    "Quiz Page Title" => "عنوان صفحة  اختبار",
 
-"Quiz Page Sub Title" => "العنوان الفرعي لصفحة  اختبار",
+    "Quiz Page Sub Title" => "العنوان الفرعي لصفحة  اختبار",
 
-"Quiz Page Banner" => "شعار صفحة اختبار اختبار",
+    "Quiz Page Banner" => "شعار صفحة اختبار اختبار",
 
-"Instructor Page Title" => "عنوان صفحة المعلم",
+    "Instructor Page Title" => "عنوان صفحة المعلم",
 
-"Instructor Page Sub Title" => "العنوان الفرعي لصفحة المعلم",
+    "Instructor Page Sub Title" => "العنوان الفرعي لصفحة المعلم",
 
-"Instructor Page Banner" => "خط العنوان لصفحة المعلم",
+    "Instructor Page Banner" => "خط العنوان لصفحة المعلم",
 
-"Contact Page Title" => "عنوان صفحة الاتصال",
+    "Contact Page Title" => "عنوان صفحة الاتصال",
 
-"Contact Page Sub Title" => "العنوان الفرعي لصفحة الاتصال",
+    "Contact Page Sub Title" => "العنوان الفرعي لصفحة الاتصال",
 
-"Contact Page Banner" => "جهة الاتصال لصفحة جهة الاتصال",
+    "Contact Page Banner" => "جهة الاتصال لصفحة جهة الاتصال",
 
-"About Page Title" => "عنوان صفحة نبذة عن",
+    "About Page Title" => "عنوان صفحة نبذة عن",
 
-"About Page Sub Title" => "نبذة عن عنوان الصفحة الفرعي",
+    "About Page Sub Title" => "نبذة عن عنوان الصفحة الفرعي",
 
-"About Page Banner" => "نبذة عن لوحة اعلانية الصفحة",
+    "About Page Banner" => "نبذة عن لوحة اعلانية الصفحة",
 
-"Subscribe Title" => "الاشتراك في العنوان",
+    "Subscribe Title" => "الاشتراك في العنوان",
 
-"Subscribe Sub Title" => "الاشتراك في العنوان الفرعي",
+    "Subscribe Sub Title" => "الاشتراك في العنوان الفرعي",
 
-"Subscribe Logo" => "تسجيل الاشتراك",
+    "Subscribe Logo" => "تسجيل الاشتراك",
 
-"Become Instructor Title" => "عنوان المعلم يصبح",
+    "Become Instructor Title" => "عنوان المعلم يصبح",
 
-"Become Instructor Sub Title" => "العنوان الفرعي للمعلم",
+    "Become Instructor Sub Title" => "العنوان الفرعي للمعلم",
 
-"Become Instructor Logo" => "شعار أصبح  للمعلمين",
+    "Become Instructor Logo" => "شعار أصبح  للمعلمين",
 
-"Image 1" => "الشكل 1",
+    "Image 1" => "الشكل 1",
 
-"Image 2" => "الشكل 2",
+    "Image 2" => "الشكل 2",
 
-"Image 3" => "الشكل 3",
+    "Image 3" => "الشكل 3",
 
-"Image 4" => "الشكل 4",
+    "Image 4" => "الشكل 4",
 
-"Homepage Banner" => "خط عنوان الصفحة الرئيسية",
+    "Homepage Banner" => "خط عنوان الصفحة الرئيسية",
 
-"Homepage Banner Title" => "عنوان خط عنوان الصفحة الرئيسية",
+    "Homepage Banner Title" => "عنوان خط عنوان الصفحة الرئيسية",
 
-"Homepage Banner Text" => "نص خط العنوان للصفحة الرئيسية",
+    "Homepage Banner Text" => "نص خط العنوان للصفحة الرئيسية",
 
-"Key Features Show In Homepage" => "عرض الخصائص الرئيسية في الصفحة الرئيسية",
+    "Key Features Show In Homepage" => "عرض الخصائص الرئيسية في الصفحة الرئيسية",
 
-"Change Key Feature" => "تغيير خاصية مفتاح",
+    "Change Key Feature" => "تغيير خاصية مفتاح",
 
-"Key Feature" => "خاصية المفتاح",
+    "Key Feature" => "خاصية المفتاح",
 
-"Key Feature Subtitle" => "العنوان الفرعي لخاصية المفتاح",
+    "Key Feature Subtitle" => "العنوان الفرعي لخاصية المفتاح",
 
-"Page Link" => "وصلة الصفحة",
+    "Page Link" => "وصلة الصفحة",
 
-"Key Feature Icon" => "شارة خاصية المفتاح",
+    "Key Feature Icon" => "شارة خاصية المفتاح",
 
-"Banner" => "لوحة اعلانية",
+    "Banner" => "لوحة اعلانية",
 
-"Header Menu" => "قائمة نص الرأس",
+    "Header Menu" => "قائمة نص الرأس",
 
-"Menu Manager" => "مدير القائمة",
+    "Menu Manager" => "مدير القائمة",
 
-"Menu List" => "كشف القائمة",
+    "Menu List" => "كشف القائمة",
 
-"Add Menu" => "اضافة قائمة",
+    "Add Menu" => "اضافة قائمة",
 
-"Select All" => "اختيار كل",
+    "Select All" => "اختيار كل",
 
-"Static Pages" => "صفحات ثابتة",
+    "Static Pages" => "صفحات ثابتة",
 
-"Custom Links" => "وصلات مهيأة",
+    "Custom Links" => "وصلات مهيأة",
 
-"Live Class" => "فئة حية",
+    "Live Class" => "فئة حية",
 
-"Quizzes" => "الإختبارات",
+    "Quizzes" => "الإختبارات",
 
-"Not Found Data" => "البيانات غير موجودة",
+    "Not Found Data" => "البيانات غير موجودة",
 
-"Sub Menu" => "القائمة الفرعية",
+    "Sub Menu" => "القائمة الفرعية",
 
-"Login & Registration" => "تسجيل الدخول والتسجيل",
+    "Login & Registration" => "تسجيل الدخول والتسجيل",
 
-"Become Instructor Page Title" => "عنوان صفحة المعلم",
+    "Become Instructor Page Title" => "عنوان صفحة المعلم",
 
-"Become Instructor Page Sub Title" => "العنوان الفرعي لصفحة تصبح المعلم",
+    "Become Instructor Page Sub Title" => "العنوان الفرعي لصفحة تصبح المعلم",
 
-"Become Instructor Page Banner" => "خط عنوان الصفحة ليصبح المعلم",
+    "Become Instructor Page Banner" => "خط عنوان الصفحة ليصبح المعلم",
 
-"Page Banner Status" => "حالة خط العنوان للصفحة",
+    "Page Banner Status" => "حالة خط العنوان للصفحة",
 
-"Page Banner" => "لوحة اعلانية الصفحة",
+    "Page Banner" => "لوحة اعلانية الصفحة",
 
-"Page Sub Title" => "العنوان الفرعي للصفحة",
+    "Page Sub Title" => "العنوان الفرعي للصفحة",
 
-"Page Title" => "عنوان الصفحة",
+    "Page Title" => "عنوان الصفحة",
 
-"Blog Page Banner" => "الشريط الاعلاني لصفحة السجل",
+    "Blog Page Banner" => "الشريط الاعلاني لصفحة السجل",
 
-"BLog Page Sub Title" => "العنوان الفرعي لصفحة السجل",
+    "BLog Page Sub Title" => "العنوان الفرعي لصفحة السجل",
 
-"BLog Page Title" => "عنوان صفحة السجل",
+    "BLog Page Title" => "عنوان صفحة السجل",
 
-"Total Students" => "اجمالي الطلاب",
+    "Total Students" => "اجمالي الطلاب",
 
-"Total Teachers" => "مجموع المدرسين",
+    "Total Teachers" => "مجموع المدرسين",
 
-"Show Testimonial" => "عرض الشهود",
+    "Show Testimonial" => "عرض الشهود",
 
-"Show Brand" => "عرض العلامة التجارية",
+    "Show Brand" => "عرض العلامة التجارية",
 
-"Show Become Instructor" => "عرض المعلم يصبح",
+    "Show Become Instructor" => "عرض المعلم يصبح",
 
-"Maintenance Page Banner" => "لوحة اعلانية صفحة الصيانة",
+    "Maintenance Page Banner" => "لوحة اعلانية صفحة الصيانة",
 
-"Homepage Banner Logo" => "شعار راية الصفحة الرئيسية",
+    "Homepage Banner Logo" => "شعار راية الصفحة الرئيسية",
 
-"Registration Page" => "صفحة التسجيل",
+    "Registration Page" => "صفحة التسجيل",
 
-"Forget Password Page" => "نسيان صفحة كلمة السرية",
+    "Forget Password Page" => "نسيان صفحة كلمة السرية",
 
-"Forget Password/Others Page" => "نسيان كلمة السرية / صفحة أخرى",
+    "Forget Password/Others Page" => "نسيان كلمة السرية / صفحة أخرى",
 
-"Blogs" => "المدونات",
+    "Blogs" => "المدونات",
 
-"Title" => "العنوان",
+    "Title" => "العنوان",
 
-"Slug" => "سلق",
+    "Slug" => "سلق",
 
-"Description" => "الوصف",
+    "Description" => "الوصف",
 
-"Date" => "التاريخ",
+    "Date" => "التاريخ",
 
-"Body" => "النص",
+    "Body" => "النص",
 
-"Add" => "اضافة",
+    "Add" => "اضافة",
 
-"name" => "الاسم",
+    "name" => "الاسم",
 
-"My Profile" => "ملف المواصفات الخاص بي",
+    "My Profile" => "ملف المواصفات الخاص بي",
 
-"Add New" => "اضافة جديد",
+    "Add New" => "اضافة جديد",
 
-"Details" => "التفاصيل",
+    "Details" => "التفاصيل",
 
-"Name" => "الاسم",
+    "Name" => "الاسم",
 
-"URL" => "عنوان URL",
+    "URL" => "عنوان URL",
 
-"Category" => "الفئة",
+    "Category" => "الفئة",
 
-"Sub Category" => "فئة فرعية",
+    "Sub Category" => "فئة فرعية",
 
-"About" => "نبذة عن",
+    "About" => "نبذة عن",
 
-"date" => "تاريخ",
+    "date" => "تاريخ",
 
-"Author" => "المؤلف",
+    "Author" => "المؤلف",
 
-"Change" => "التغيير",
+    "Change" => "التغيير",
 
-"Country" => "البلد",
+    "Country" => "البلد",
 
-"Bookmarks" => "علامات التوقف",
+    "Bookmarks" => "علامات التوقف",
 
-"Total Courses" => "اجمالي البرامج التدريبية",
+    "Total Courses" => "اجمالي البرامج التدريبية",
 
-"Sub Title" => "عنوان فرعي",
+    "Sub Title" => "عنوان فرعي",
 
-"teacher" => "المعلم",
+    "teacher" => "المعلم",
 
-"courses" => "البرامج التدريبية",
+    "courses" => "البرامج التدريبية",
 
-"add" => "اضافة",
+    "add" => "اضافة",
 
-"description" => "الوصف",
+    "description" => "الوصف",
 
-"Courses" => "البرامج التدريبية",
+    "Courses" => "البرامج التدريبية",
 
-"Course Title" => "عنوان البرنامج التدريبي",
-"Video Url" => "Video Url",
+    "Course Title" => "عنوان البرنامج التدريبي",
+
+    "Video Url" => "Video Url",
+    "Instructor Button" => "Instructor Button",
+    "Instructor" => "Instructor",
+    "Instructor Testemonial Title" => "Instructor Testemonial Title",
+    "Instructor Testemonial Subtitle" => "Instructor Testemonial Subtitle",
+    "Populer Section Show in Instructor Page" => 'Populer Section Show in Instructor Page',
 
 ];

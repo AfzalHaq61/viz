@@ -6,12 +6,11 @@ use Illuminate\View\Component;
 
 class AboutPageWhoWeAre extends Component
 {
-    public $who_we_are, $banner_title;
+    public $about;
 
-    public function __construct($whoWeAre, $bannerTitle)
+    public function __construct($about)
     {
-        $this->who_we_are = $whoWeAre;
-        $this->banner_title = $bannerTitle;
+        $this->about = $about;
     }
 
     /**

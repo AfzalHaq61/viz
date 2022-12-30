@@ -5,7 +5,7 @@
 @section('mainContent')
 @if(!empty($blocks))
 @foreach($blocks as $block)
-@if($block->id==1)
+@if($block->id==2)
 <x-home-page-banner :homeContent="$homeContent" />
 @elseif($block->id==3)
 @if($homeContent->show_category_section==1)

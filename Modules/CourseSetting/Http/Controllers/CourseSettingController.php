@@ -339,13 +339,16 @@ class CourseSettingController extends Controller
             $course_feature = $request->course_feature;
             $course_feature_data = [];
 
-            for ($i = 0; $i < count($course_feature); $i++) {
-                if ($course_feature[$i] != "") {
-                    array_push($course_feature_data, $course_feature[$i]);
+            if ($course_feature != "") {
+                for ($i = 0; $i < count($course_feature); $i++) {
+                    if ($course_feature[$i] != "") {
+                        array_push($course_feature_data, $course_feature[$i]);
+                    }
                 }
             }
 
-            $course->course_feature = $course_feature_data;
+            $course->course_feature = json_encode($course_feature_data);
+            $course->future_course = $request->future_course;
 
             $course->user_id = Auth::id();
             if ($request->type == 1) {
@@ -549,13 +552,16 @@ class CourseSettingController extends Controller
             $course_feature = $request->course_feature;
             $course_feature_data = [];
 
-            for ($i = 0; $i < count($course_feature); $i++) {
-                if ($course_feature[$i] != "") {
-                    array_push($course_feature_data, $course_feature[$i]);
+            if ($course_feature != "") {
+                for ($i = 0; $i < count($course_feature); $i++) {
+                    if ($course_feature[$i] != "") {
+                        array_push($course_feature_data, $course_feature[$i]);
+                    }
                 }
             }
 
-            $course->course_feature = $course_feature_data;
+            $course->course_feature = json_encode($course_feature_data);
+            $course->future_course = $request->future_course;
 
             $course->user_id = Auth::id();
 

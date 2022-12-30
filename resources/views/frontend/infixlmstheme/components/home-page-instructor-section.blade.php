@@ -11,7 +11,7 @@
                             {{@$homeContent->instructor_sub_title}}
                         </p>
                         <a href="{{route('courses')}}"
-                           class="theme_btn">{{__('frontend.Find Our Courses')}}</a>
+                           class="theme_btn">{{ @$homeContent->instructor_button }}</a>
                     </div>
                 </div>
             </div>
