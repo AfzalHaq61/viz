@@ -176,6 +176,7 @@ return [
     'Slug' => 'Slug',
 
     "Video Url" => "Video Url",
+    "Instructor" => "Instructor",
     "Instructor Button" => "Instructor Button",
     "Instructor Testemonial Title" => "Instructor Testemonial Title",
     "Instructor Testemonial Subtitle" => "Instructor Testemonial Subtitle",
