@@ -19,7 +19,7 @@ class FrontPageSection extends Component
 
     public function render()
     {
-        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->take(4)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
+        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
 
         return view(theme('components.front-page-section'), compact('top_courses'));
     }

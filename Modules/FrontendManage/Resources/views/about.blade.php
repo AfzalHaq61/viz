@@ -11,6 +11,10 @@
         .couter_boxs::before {
             background-image: url('{{ asset('public/frontned/edume/img/about/counter_bg.png') }}');
         }
+        .video_container {
+            display: flex;
+            justify-content: space-between
+        }
     </style>
     <section class="sms-breadcrumb mb-40 white-box">
         <div class="container-fluid">
@@ -222,6 +226,39 @@
                                                                     type="text"
                                                                     name="banner_title[{{ $language->code }}]"
                                                                     value="{{ isset($about) ? $about->getTranslation('banner_title', $language->code) : '' }}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-12">
+                                                            <div class="primary_input mb-25">
+                                                                <div class="video_container">
+                                                                    <div>
+                                                                        <label class="primary_input_label"
+                                                                            for="">{{ __('frontendmanage.About Video') }}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="">
+                                                                        <label class="switch_toggle ">
+                                                                            <input type="checkbox"
+                                                                                class="status_enable_disable"
+                                                                                name="enable_about_video" id="enable_about_video"
+                                                                                checked
+                                                                                value="1">
+                                                                            <i class="slider round"></i>
+
+
+                                                                        </label>
+                                                                        {{ __('frontendmanage.Enable About Video') }}
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <input class="primary_input_field"
+                                                                    {{ $errors->has('about_video_url') ? ' autofocus' : '' }}
+                                                                    placeholder="{{ __('frontendmanage.About Video') }}"
+                                                                    type="text"
+                                                                    name="about_video_url[{{ $language->code }}]"
+                                                                    value="{{ isset($about) ? $about->getTranslation('about_video_url', $language->code) : '' }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-12">

@@ -156,6 +156,7 @@ class FrontendManageController extends Controller
             UpdateHomeContent('show_continue_watching', $request->show_continue_watching == 1 ? 1 : 0);
             UpdateHomeContent('show_contact_page_faq', $request->show_contact_page_faq == 1 ? 1 : 0);
             UpdateHomeContent('show_cta_section', $request->show_cta_section == 1 ? 1 : 0);
+            UpdateHomeContent('enable_video', $request->enable_video == 1 ? 1 : 0);
 
             GenerateHomeContent(SaasDomain());
 

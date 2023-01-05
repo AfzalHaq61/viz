@@ -47,6 +47,11 @@
         .card-header button[aria-expanded=true]::before {
             content: "\e648";
         }
+
+        .video_container {
+            display: flex;
+            justify-content: space-between
+        }
     </style>
 @endpush
 @section('mainContent')
@@ -1183,10 +1188,34 @@
                                                                                                 <div class="col-xl-12">
                                                                                                     <div
                                                                                                         class="primary_input mb-25">
-                                                                                                        <label
-                                                                                                            class="primary_input_label"
-                                                                                                            for="">{{ __('frontendmanage.Video Url') }}
-                                                                                                        </label>
+                                                                                                        <div
+                                                                                                            class="video_container">
+                                                                                                            <div>
+                                                                                                                <label
+                                                                                                                    class="primary_input_label"
+                                                                                                                    for="">{{ __('frontendmanage.Video Url') }}
+                                                                                                                </label>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="mb-25">
+                                                                                                                <label
+                                                                                                                    class="switch_toggle ">
+                                                                                                                    <input
+                                                                                                                        type="checkbox"
+                                                                                                                        class="status_enable_disable"
+                                                                                                                        name="enable_video"
+                                                                                                                        id="enable_video"
+                                                                                                                        @if (@getRawHomeContents($home_content, 'enable_video', 'en') == 1) checked @endif
+                                                                                                                        value="{{ isset($home_content) ? getRawHomeContents($home_content, 'enable_video', $language->code) : '' }}">
+                                                                                                                    <i
+                                                                                                                        class="slider round"></i>
+
+
+                                                                                                                </label>
+                                                                                                                {{ __('frontendmanage.Enable Video') }}
+
+                                                                                                            </div>
+                                                                                                        </div>
                                                                                                         <input
                                                                                                             class="primary_input_field"
                                                                                                             placeholder="{{ __('frontendmanage.Video Url') }}"
