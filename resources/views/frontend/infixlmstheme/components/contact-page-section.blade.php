@@ -1,172 +1,132 @@
 <div>
-
-    <div class="contact_section ">
+    <input type="hidden" class="class_route" name="class_route" value="{{ route('courses') }}">
+    <div class="courses_area">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="contact_address">
-                        <div class="row justify-content-center">
-                            <div class="col-xl-12">
-                                <div class="row justify-content-between">
-                                    <div class="col-lg-5">
-                                        <div class="contact_info mb_30">
-                                            <div class="contact_title">
-                                                <h4 class="mb-0">{{__('frontend.Contact Information')}}</h4>
-                                            </div>
-                                            <p>{{__('frontend.contact_subtitle')}}</p>
-
-
-                                            <div class="address_lines">
-                                                @if(!empty(Settings('address') ))
-                                                    <div class="single_address_line d-flex">
-                                                        <i class="ti-direction-alt"></i>
-                                                        <div class="address_info">
-                                                            <p> {!!Settings('address')  ? Settings('address')  : '89/2 Panthapath, Dhaka 1215, Bangladesh' !!}</p>
-
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                                @if(!empty(Settings('phone') ))
-                                                    <div class="single_address_line d-flex">
-                                                        <i class="ti-headphone-alt"></i>
-                                                        <div class="address_info">
-                                                            <p> {!!Settings('phone') !!}</p>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                                @if(!empty(Settings('email') ))
-
-                                                    <div class="single_address_line d-flex">
-                                                        <i class="ti-email"></i>
-                                                        <div class="address_info">
-                                                            <p> {!!Settings('email') !!}</p>
-                                                            <p>{{__('frontend.Send us your query anytime')}}!</p>
-                                                        </div>
-                                                    </div>
-                                                @endif
-                                            </div>
-
+            <div class="row">
+                {{-- <div class="col-lg-4 col-xl-3">
+                    <x-class-page-section-sidebar :level="$level" :type="$type" :categories="$categories"
+                                                  :category="$category" :languages="$languages" :language="$language"
+                                                  :mode="$mode"/>
+                </div> --}}
+                <div class="col-lg-8 col-xl-9">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="box_header d-flex flex-wrap align-items-center justify-content-between">
+                                <h5 class="font_16 f_w_500 mb_30">{{ $total }}
+                                    {{ __('frontend.Course are found') }}</h5>
+                                {{-- <div class="box_header_right mb_30">
+                                    <div class="short_select d-flex align-items-center">
+                                        <div class="mobile_filter mr_10">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="19.5" height="13"
+                                                 viewBox="0 0 19.5 13">
+                                                <g transform="translate(28)">
+                                                    <rect id="Rectangle_1" data-name="Rectangle 1" width="19.5"
+                                                          height="2" rx="1"
+                                                          transform="translate(-28)"
+                                                          fill="var(--system_primery_color)"/>
+                                                    <rect id="Rectangle_2" data-name="Rectangle 2" width="15.5"
+                                                          height="2" rx="1"
+                                                          transform="translate(-26 5.5)"
+                                                          fill="var(--system_primery_color)"/>
+                                                    <rect id="Rectangle_3" data-name="Rectangle 3" width="5" height="2"
+                                                          rx="1"
+                                                          transform="translate(-20.75 11)"
+                                                          fill="var(--system_primery_color)"/>
+                                                </g>
+                                            </svg>
                                         </div>
+                                        <h5 class="mr_10 font_16 f_w_500 mb-0">{{__('frontend.Order By')}}:</h5>
+                                        <select class="small_select" id="order">
+                                            <option data-display="None">{{__('frontend.None')}}</option>
+                                            <option
+                                                value="price" {{$order=="price"?'selected':''}}>{{__('frontend.Price')}}</option>
+                                            <option
+                                                value="date" {{$order=="date"?'selected':''}}>{{__('frontend.Date')}}</option>
+                                        </select>
                                     </div>
-
-
-                                    <div class="col-lg-6">
-                                        <div class="contact_form_box mb_30">
-                                            <div class="contact_title">
-                                                <h4 class="mb-0">{{__('frontend.Send Us Message')}}</h4>
-                                            </div>
-                                            <form class="form-area contact-form" id="myForm"
-                                                  action="{{route('contactMsgSubmit')}}"
-                                                  method="post">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <label class="primary_label">{{__('frontend.Name')}}</label>
-                                                        <input name="name" placeholder="{{__('frontend.Enter Name')}}"
-                                                               onfocus="this.placeholder = ''"
-                                                               onblur="this.placeholder = '{{__('frontend.Enter Name')}}'"
-                                                               class="primary_input mb_20" type="text" required
-                                                               value="{{old('name')}}">
-                                                        <span class="text-danger"
-                                                              role="alert">{{$errors->first('name')}}</span>
-
-                                                        <label
-                                                            class="primary_label">{{__('frontend.Email Address')}}</label>
-                                                        <input name="email" required
-                                                               placeholder="{{__('frontend.Type e-mail address')}}"
-                                                               pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                                               onfocus="this.placeholder = ''"
-                                                               onblur="this.placeholder = '{{__('frontend.Type e-mail address')}}'"
-                                                               class="primary_input mb_20"
-                                                               type="email" value="{{old('email')}}">
-                                                        <span class="text-danger"
-                                                              role="alert">{{$errors->first('email')}}</span>
-                                                        <label class="primary_label">{{__('frontend.Subject')}}</label>
-                                                        <input name="subject" required
-                                                               placeholder="{{__('frontend.Enter your subject')}}"
-                                                               onfocus="this.placeholder = ''"
-                                                               onblur="this.placeholder = '{{__('frontend.Enter your subject')}}'"
-                                                               class="primary_input mb_20" type="text"
-                                                               value="{{old('subject')}}">
-                                                        <span class="text-danger"
-                                                              role="alert">{{$errors->first('subject')}}</span>
-                                                    </div>
-                                                    <div class="col-lg-12">
-                                                        <label class="primary_label">{{__('frontend.Message')}}</label>
-                                                        <textarea required class="primary_textarea mb-0" name="message"
-                                                                  placeholder="{{__('frontend.Write your message')}}"
-                                                                  onfocus="this.placeholder = ''"
-                                                                  onblur="this.placeholder = '{{__('frontend.Write your message')}}'"
-                                                        >{{old('message')}}</textarea>
-                                                        <span class="text-danger"
-                                                              role="alert">{{$errors->first('message')}}</span>
-                                                    </div>
-
-                                                    <div class="col-12 mt_10 mb_20">
-
-
-                                                        @if(saasEnv('NOCAPTCHA_FOR_CONTACT')=='true')
-                                                            <input type="hidden" name="hasCaptcha"
-                                                                   value="{{saasEnv('NOCAPTCHA_FOR_CONTACT')}}">
-                                                            @if(saasEnv('NOCAPTCHA_IS_INVISIBLE')=="true")
-                                                                {!! NoCaptcha::display(["data-size"=>"invisible"]) !!}
-                                                                {!! NoCaptcha::renderJs() !!}
-                                                            @else
-                                                                {!! NoCaptcha::display() !!}
-                                                                {!! NoCaptcha::renderJs() !!}
-                                                            @endif
-
-                                                            @if ($errors->has('g-recaptcha-response'))
-                                                                <span class="text-danger"
-                                                                      role="alert">{{$errors->first('g-recaptcha-response')}}</span>
-                                                            @endif
-                                                        @endif
-
-
-                                                    </div>
-                                                    <div class="col-lg-12 text-left">
-                                                        <div class="alert-msg"></div>
-
-
-                                                            @if(saasEnv('NOCAPTCHA_FOR_CONTACT')=='true' && saasEnv('NOCAPTCHA_IS_INVISIBLE')=="true")
-                                                                <button type="button"
-                                                                        class="g-recaptcha theme_btn small_btn submit-btn w-100 text-center"
-                                                                        data-sitekey="{{saasEnv('NOCAPTCHA_SITEKEY')}}"
-                                                                        data-size="invisible"
-                                                                        data-callback="onSubmit"
-                                                                >
-                                                                    {{__('frontend.Send Message')}}
-                                                                </button>
-
-                                                                <script src="https://www.google.com/recaptcha/api.js"
-                                                                        async
-                                                                        defer></script>
-                                                                <script>
-                                                                    function onSubmit(token) {
-                                                                        document.getElementById("myForm").submit();
-                                                                    }
-                                                                </script>
-                                                            @else
-
-                                                            <button type="submit"
-                                                                        class="theme_btn small_btn submit-btn w-100 text-center">
-                                                                    {{__('frontend.Send Message')}}
-                                                                </button>
-                                                            @endif
-
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
+                        @if (isset($top_courses))
+                            @foreach ($top_courses as $course)
+                                <div class="col-lg-4 col-xl-3 col-md-6 mb-4">
+                                        <div class="couse_wizged">
+                                            <a
+                                                href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}">
+                                                <div class="thumb">
+
+                                                    <div class="thumb_inner lazy"
+                                                        data-src="{{ getCourseImage($course->thumbnail) }}">
+                                                    </div>
+                                                    <x-price-tag :price="$course->price" :discount="$course->discount_price" />
+                                                </div>
+                                            </a>
+                                            <div class="course_content">
+                                                <a
+                                                    href="{{ courseDetailsUrl(@$course->id, @$course->type, @$course->slug) }}">
+
+                                                    <h4 class="noBrake" title=" {{ $course->title }}">
+                                                        {{ $course->title }}
+                                                    </h4>
+                                                </a>
+
+                                                <div class="rating_cart">
+                                                    <div class="rateing">
+                                                        <span>{{ $course->totalReview }}/5</span>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    @auth()
+                                                        @if (!$course->isLoginUserEnrolled && !$course->isLoginUserCart)
+                                                            <a href="#" class="cart_store"
+                                                                data-id="{{ $course->id }}">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                        @endif
+                                                    @endauth
+                                                    @guest()
+                                                        @if (!$course->isGuestUserCart)
+                                                            <a href="#" class="cart_store"
+                                                                data-id="{{ $course->id }}">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                            </a>
+                                                        @endif
+                                                    @endguest
+
+                                                </div>
+                                                <div class="course_less_students">
+                                                    <a> <i class="ti-agenda"></i> {{ count($course->lessons) }}
+                                                        {{ __('frontend.Lessons') }}</a>
+                                                    <a>
+                                                        <i class="ti-user"></i> {{ $course->total_enrolled }}
+                                                        {{ __('frontend.Students') }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                            @endforeach
+                        @endif
+                        @if (count($courses) == 0)
+                            <div class="col-lg-12">
+                                <div
+                                    class="Nocouse_wizged text-center d-flex align-items-center justify-content-center">
+                                    <div class="thumb">
+                                        <img style="width: 50px"
+                                            src="{{ asset('public/frontend/infixlmstheme') }}/img/not-found.png"
+                                            alt="">
+                                    </div>
+                                    <h1>
+                                        {{ __('frontend.No Course Found') }}
+                                    </h1>
+                                </div>
+                            </div>
+                        @endif
                     </div>
+                    {{ $courses->appends(Request::all())->links() }}
                 </div>
             </div>
         </div>
     </div>
-
 </div>

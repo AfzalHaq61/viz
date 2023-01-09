@@ -1395,10 +1395,11 @@ class WebsiteController extends Controller
             $futureCourses = [];
 
             if (isset($page) && ($page->slug == 'future-courses')) {
-                $futureCourses = FutureCourse::latest()->get();
+                $futureCourses = Course::where('future_course', 1)->get();
             }
 
             return view(theme('pages.page'), compact('page', 'futureCourses'));
+
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
