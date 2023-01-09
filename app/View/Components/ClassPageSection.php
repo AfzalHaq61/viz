@@ -114,6 +114,7 @@ class ClassPageSection extends Component
         }
 
         $courses = $query->paginate(itemsGridSize());
+
         $total = $courses->total();
         return view(theme('components.class-page-section'), compact('order', 'category', 'level', 'mode', 'order', 'language', 'type', 'total', 'courses'));
     }

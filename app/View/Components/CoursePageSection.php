@@ -20,8 +20,9 @@ class CoursePageSection extends Component
 
     public function render()
     {
-        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->take(4)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
-        $query = Course::with('user', 'enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'cartUsers', 'courseLevel')->where('scope', 1);
+        // $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->take(4)->where('future_course', 0)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
+        $top_courses = Course::orderBy('total_enrolled', 'desc')->where('status', 1)->where('type', 1)->where('future_course', 0)->with('lessons', 'activeReviews', 'enrollUsers', 'cartUsers')->get();
+        $query = Course::with('user', 'enrolls', 'comments', 'reviews', 'lessons', 'activeReviews', 'enrollUsers', 'cartUsers', 'courseLevel')->where('scope', 1)->where('future_course', 0);
 
         $type = $this->request->type;
         if (empty($type)) {
@@ -100,7 +101,9 @@ class CoursePageSection extends Component
             }
         }
         $courses = $query->paginate(itemsGridSize());
-        $total = $courses->total();
+
+        // $total = $courses->total();
+        $total = $top_courses->count();
         $levels = CourseLevel::getAllActiveData();
         return view(theme('components.course-page-section'), compact('levels', 'order', 'mode', 'category', 'level', 'order', 'language', 'type', 'total', 'courses', 'top_courses'));
     }
