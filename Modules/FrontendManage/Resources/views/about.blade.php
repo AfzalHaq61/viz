@@ -228,45 +228,11 @@
                                                                     value="{{ isset($about) ? $about->getTranslation('banner_title', $language->code) : '' }}">
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-xl-12">
-                                                            <div class="primary_input mb-25">
-                                                                <div class="video_container">
-                                                                    <div>
-                                                                        <label class="primary_input_label"
-                                                                            for="">{{ __('frontendmanage.About Video') }}
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="">
-                                                                        <label class="switch_toggle ">
-                                                                            <input type="checkbox"
-                                                                                class="status_enable_disable"
-                                                                                name="enable_about_video" id="enable_about_video"
-                                                                                checked
-                                                                                value="1">
-                                                                            <i class="slider round"></i>
-
-
-                                                                        </label>
-                                                                        {{ __('frontendmanage.Enable About Video') }}
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <input class="primary_input_field"
-                                                                    {{ $errors->has('about_video_url') ? ' autofocus' : '' }}
-                                                                    placeholder="{{ __('frontendmanage.About Video') }}"
-                                                                    type="text"
-                                                                    name="about_video_url[{{ $language->code }}]"
-                                                                    value="{{ isset($about) ? $about->getTranslation('about_video_url', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
                                                         <div class="col-xl-12">
                                                             <hr>
                                                             <br>
                                                         </div>
                                                     @endif
-
 
                                                     @if (currentTheme() != 'tvt')
                                                         <div class="col-xl-12">
@@ -607,6 +573,47 @@
                                                 </div>
                                             </div>
                                         @endforeach
+
+                                        <div class="col-xl-12">
+                                            <div class="primary_input mb-25">
+
+                                                    <div class="d-flex align-items-center">
+                                                        <label class="primary_input_label"
+                                                            for="">{{ __('frontendmanage.Video Url') }}
+                                                        </label>
+
+                                                        <div style="margin-bottom: 0.4rem; margin-right: 1.4rem">
+                                                            <label class="primary_checkbox d-flex mr-12"
+                                                                for="about_video_url_status_1">
+                                                                <input type="radio" class="common-radio drip0"
+                                                                    id="about_video_url_status_1"
+                                                                    name="about_video_url_status" value="0"
+                                                                    {{ $about->about_video_url_status == 0 ? 'checked' : '' }} />
+                                                                <span class="checkmark mr-2"></span>
+                                                                {{ __('common.No') }}
+                                                            </label>
+                                                        </div>
+                                                        <div style="margin-bottom: 0.4rem">
+                                                            <label class="primary_checkbox d-flex mr-12"
+                                                                for="about_video_url_status_2">
+                                                                <input type="radio" class="common-radio drip1"
+                                                                    id="about_video_url_status_2"
+                                                                    name="about_video_url_status" value="1"
+                                                                    {{ $about->about_video_url_status == 1 ? 'checked' : '' }} />
+                                                                <span class="checkmark mr-2"></span>
+                                                                {{ __('common.Yes') }}
+                                                            </label>
+                                                        </div>
+                                                </div>
+                                                <input class="primary_input_field"
+                                                    {{ $errors->has('about_video_url') ? ' autofocus' : '' }}
+                                                    placeholder="{{ __('frontendmanage.Video Url') }}"
+                                                    type="text"
+                                                    name="about_video_url"
+                                                    value="{{ isset($about->about_video_url) ? $about->about_video_url : '' }}" />
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     @if (currentTheme() != 'tvt' && currentTheme() != 'teachery')
@@ -901,7 +908,7 @@
                                                                 <input type="radio" class="common-radio drip0"
                                                                     id="show_become_instructor0"
                                                                     name="show_become_instructor" value="0"
-                                                                    {{ @$about->show_testimonial == 0 ? 'checked' : '' }}>
+                                                                    {{ @$about->show_become_instructor == 0 ? 'checked' : '' }}>
                                                                 <span class="checkmark mr-2"></span>
                                                                 {{ __('common.No') }}
                                                             </label>
@@ -912,7 +919,7 @@
                                                                 <input type="radio" class="common-radio drip1"
                                                                     id="show_become_instructor1"
                                                                     name="show_become_instructor" value="1"
-                                                                    {{ @$about->show_testimonial == 1 ? 'checked' : '' }}>
+                                                                    {{ @$about->show_become_instructor == 1 ? 'checked' : '' }}>
                                                                 <span class="checkmark mr-2"></span>
                                                                 {{ __('common.Yes') }}
                                                             </label>
