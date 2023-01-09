@@ -238,7 +238,7 @@ if (!function_exists('fileUpload')) {
         $file->move($destination, $fileName);
         $fileName = $destination . $fileName;
         return $fileName;
-        
+
     }
 }
 
@@ -2213,8 +2213,10 @@ if (!function_exists('getDomainName')) {
 if (!function_exists('getMenuLink')) {
     function getMenuLink($menu)
     {
+
         $url = url('/');
         if ($menu) {
+
             if (!empty($menu->link)) {
                 if (substr($menu->link, 0, 1) == '/') {
                     if ($menu->link == "/") {
@@ -2223,17 +2225,25 @@ if (!function_exists('getMenuLink')) {
                     }
                     return url($menu->link);
                 }
+
                 return $menu->link;
             }
+
             $type = $menu->type;
+
             $element_id = $menu->element_id;
+
             if ($type == "Dynamic Page") {
 
                 $page = \Modules\FrontendManage\Entities\FrontPage::find($element_id);
+
                 if ($page) {
                     $url = \route('frontPage', [$page->slug]);
                 }
+
             } elseif ($type == "Static Page") {
+
+
                 $page = \Modules\FrontendManage\Entities\FrontPage::find($element_id);
                 if ($page) {
                     $url = url($page->slug);

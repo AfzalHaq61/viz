@@ -1161,7 +1161,7 @@
 
                                                                             </div>
                                                                             <div id="show_category_section_box"
-                                                                                class="col-md-12"
+
                                                                                 style="@if (@getRawHomeContents($home_content, 'show_category_section', 'en') == 0) display:none @endif ">
                                                                                 <div class="row pt-0">
                                                                                     @if (isModuleActive('FrontendMultiLang'))
@@ -1190,16 +1190,9 @@
                                                                                                         class="primary_input mb-25">
                                                                                                         <div
                                                                                                             class="video_container">
-                                                                                                            <div>
+                                                                                                            <div class="primary_input_label">
                                                                                                                 <label
-                                                                                                                    class="primary_input_label"
-                                                                                                                    for="">{{ __('frontendmanage.Video Url') }}
-                                                                                                                </label>
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="mb-25">
-                                                                                                                <label
-                                                                                                                    class="switch_toggle ">
+                                                                                                                    class="switch_toggle" for="enable_video">
                                                                                                                     <input
                                                                                                                         type="checkbox"
                                                                                                                         class="status_enable_disable"
@@ -1212,7 +1205,7 @@
 
 
                                                                                                                 </label>
-                                                                                                                {{ __('frontendmanage.Enable Video') }}
+                                                                                                                {{ __('frontendmanage.Video Url') }}
 
                                                                                                             </div>
                                                                                                         </div>
@@ -4300,6 +4293,18 @@
         $(".imgInput16").change(function() {
             readURL16(this);
         });
+
+
+        $('#enable_video').change(function() {
+            if($(this).is(":checked")) {
+                $(this).attr('checked', true);
+                $(this).val('true');
+            } else {
+                $(this).removeAttr('checked');
+                $(this).val('false');
+            }
+        });
+
         @if (Settings('frontend_active_theme') != 'tvt')
             $(document).on('mouseover', 'body', function() {
 

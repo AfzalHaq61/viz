@@ -135,17 +135,23 @@
 
         <div class="container">
             <div class="row align-items-center">
+                @if(isset($homeContent->enable_video) && isset($homeContent->video_url) && $homeContent->enable_video)
                 <div class="col-12">
                     <div class="row">
                         <div class="col-12 col-sm-8 mx-auto mb-5">
+                            @php
+                                $videoUrl = explode('=', $homeContent->video_url);
+                                $videoUrl = isset($videoUrl[1]) ? $videoUrl[1] : '';
+                            @endphp
                             <iframe width="100%" height="500"
-                                src="{{ 'https:\/\/www.youtube.com\/embed\/' . explode('=', $homeContent->video_url)[1] }}"
+                                src="{{ 'https:\/\/www.youtube.com\/embed\/' . $videoUrl }}"
                                 title="YouTube video player" frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="col-12 modules_area">
                     <div class="modile_main_wrap">

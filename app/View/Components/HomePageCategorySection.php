@@ -44,6 +44,7 @@ class HomePageCategorySection extends Component
                 }
             }
         }
+
         $this->homeContent = $homeContent;
         $this->categories = $categories;
     }

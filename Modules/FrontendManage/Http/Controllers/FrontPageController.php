@@ -18,7 +18,6 @@ class FrontPageController extends Controller
 
     public function index()
     {
-
         $data['frontPages'] = FrontPage::where('is_static', '=', '0')->latest()->get();
         return view('frontendmanage::front_page.index', $data);
     }

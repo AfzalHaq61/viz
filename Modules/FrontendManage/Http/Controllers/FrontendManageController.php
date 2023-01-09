@@ -156,7 +156,8 @@ class FrontendManageController extends Controller
             UpdateHomeContent('show_continue_watching', $request->show_continue_watching == 1 ? 1 : 0);
             UpdateHomeContent('show_contact_page_faq', $request->show_contact_page_faq == 1 ? 1 : 0);
             UpdateHomeContent('show_cta_section', $request->show_cta_section == 1 ? 1 : 0);
-            UpdateHomeContent('enable_video', $request->enable_video == 1 ? 1 : 0);
+
+            UpdateHomeContent('enable_video', $request->enable_video == 'true' ? 1 : 0);
 
             GenerateHomeContent(SaasDomain());
 
@@ -674,6 +675,7 @@ class FrontendManageController extends Controller
 
     public function AboutPage()
     {
+
         $about = AboutPage::getData();
         return view('frontendmanage::about', compact('about'));
     }
@@ -785,6 +787,8 @@ class FrontendManageController extends Controller
             $about->show_brand = $request->show_brand;
             $about->show_become_instructor = $request->show_become_instructor;
 
+            $about->about_video_url = $request->about_video_url;
+            $about->about_video_url_status = $request->about_video_url_status;
 
             if ($request->image1 != null) {
                 $about->image1 = $this->saveImage($request->image1);
