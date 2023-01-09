@@ -11,6 +11,7 @@
         .couter_boxs::before {
             background-image: url('{{ asset('public/frontned/edume/img/about/counter_bg.png') }}');
         }
+
         .video_container {
             display: flex;
             justify-content: space-between
@@ -576,42 +577,45 @@
 
                                         <div class="col-xl-12">
                                             <div class="primary_input mb-25">
+                                                <div class="d-flex align-items-center">
+                                                    <label class="primary_input_label"
+                                                        for="">{{ __('frontendmanage.Video Url') }}
+                                                    </label>
 
-                                                    <div class="d-flex align-items-center">
-                                                        <label class="primary_input_label"
-                                                            for="">{{ __('frontendmanage.Video Url') }}
+                                                    <div style="margin-bottom: 0.4rem; margin-right: 1.4rem">
+                                                        <label class="primary_checkbox d-flex mr-12"
+                                                            for="about_video_url_status_1">
+                                                            <input type="radio" class="common-radio drip0"
+                                                                id="about_video_url_status_1"
+                                                                name="about_video_url_status" value="0"
+                                                                {{ $about->about_video_url_status == 0 ? 'checked' : '' }} />
+                                                            <span class="checkmark mr-2"></span>
+                                                            {{ __('common.No') }}
                                                         </label>
-
-                                                        <div style="margin-bottom: 0.4rem; margin-right: 1.4rem">
-                                                            <label class="primary_checkbox d-flex mr-12"
-                                                                for="about_video_url_status_1">
-                                                                <input type="radio" class="common-radio drip0"
-                                                                    id="about_video_url_status_1"
-                                                                    name="about_video_url_status" value="0"
-                                                                    {{ $about->about_video_url_status == 0 ? 'checked' : '' }} />
-                                                                <span class="checkmark mr-2"></span>
-                                                                {{ __('common.No') }}
-                                                            </label>
-                                                        </div>
-                                                        <div style="margin-bottom: 0.4rem">
-                                                            <label class="primary_checkbox d-flex mr-12"
-                                                                for="about_video_url_status_2">
-                                                                <input type="radio" class="common-radio drip1"
-                                                                    id="about_video_url_status_2"
-                                                                    name="about_video_url_status" value="1"
-                                                                    {{ $about->about_video_url_status == 1 ? 'checked' : '' }} />
-                                                                <span class="checkmark mr-2"></span>
-                                                                {{ __('common.Yes') }}
-                                                            </label>
-                                                        </div>
+                                                    </div>
+                                                    <div style="margin-bottom: 0.4rem">
+                                                        <label class="primary_checkbox d-flex mr-12"
+                                                            for="about_video_url_status_2">
+                                                            <input type="radio" class="common-radio drip1"
+                                                                id="about_video_url_status_2"
+                                                                name="about_video_url_status" value="1"
+                                                                {{ $about->about_video_url_status == 1 ? 'checked' : '' }} />
+                                                            <span class="checkmark mr-2"></span>
+                                                            {{ __('common.Yes') }}
+                                                        </label>
+                                                    </div>
                                                 </div>
                                                 <input class="primary_input_field"
                                                     {{ $errors->has('about_video_url') ? ' autofocus' : '' }}
-                                                    placeholder="{{ __('frontendmanage.Video Url') }}"
-                                                    type="text"
+                                                    placeholder="{{ __('frontendmanage.Video Url') }}" type="text"
                                                     name="about_video_url"
                                                     value="{{ isset($about->about_video_url) ? $about->about_video_url : '' }}" />
                                             </div>
+                                        </div>
+
+                                        <div class="col-xl-12">
+                                            <hr>
+                                            <br>
                                         </div>
 
                                     </div>
@@ -649,7 +653,13 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-xl-12">
+                                            <hr>
+                                            <br>
+                                        </div>
                                     @endif
+
                                     <div class="row ">
 
                                         @if (currentTheme() == 'infixlmstheme' || currentTheme() == 'teachery' || currentTheme() == 'tvt')
@@ -920,6 +930,39 @@
                                                                     id="show_become_instructor1"
                                                                     name="show_become_instructor" value="1"
                                                                     {{ @$about->show_become_instructor == 1 ? 'checked' : '' }}>
+                                                                <span class="checkmark mr-2"></span>
+                                                                {{ __('common.Yes') }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <div class="primary_input mb-25">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="primary_input_label" for="">
+                                                                {{ __('frontendmanage.Show Gallary Images') }}</label>
+                                                        </div>
+
+                                                        <div class="col-md-6 mb-25">
+                                                            <label class="primary_checkbox d-flex mr-12"
+                                                                for="show_galary_images0">
+                                                                <input type="radio" class="common-radio drip0"
+                                                                    id="show_galary_images0" name="show_galary_images"
+                                                                    value="0"
+                                                                    {{ @$about->show_galary_images == 0 ? 'checked' : '' }}>
+                                                                <span class="checkmark mr-2"></span>
+                                                                {{ __('common.No') }}
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-md-6 mb-25">
+                                                            <label class="primary_checkbox d-flex mr-12"
+                                                                for="show_galary_images1">
+                                                                <input type="radio" class="common-radio drip1"
+                                                                    id="show_galary_images1" name="show_galary_images"
+                                                                    value="1"
+                                                                    {{ @$about->show_galary_images == 1 ? 'checked' : '' }}>
                                                                 <span class="checkmark mr-2"></span>
                                                                 {{ __('common.Yes') }}
                                                             </label>

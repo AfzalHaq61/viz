@@ -786,6 +786,7 @@ class FrontendManageController extends Controller
             $about->show_testimonial = $request->show_testimonial;
             $about->show_brand = $request->show_brand;
             $about->show_become_instructor = $request->show_become_instructor;
+            $about->show_galary_images = $request->show_galary_images;
 
             $about->about_video_url = $request->about_video_url;
             $about->about_video_url_status = $request->about_video_url_status;

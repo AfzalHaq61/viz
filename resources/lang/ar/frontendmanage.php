@@ -418,5 +418,6 @@ return [
     "Instructor Testemonial Title" => "Instructor Testemonial Title",
     "Instructor Testemonial Subtitle" => "Instructor Testemonial Subtitle",
     "Populer Section Show in Instructor Page" => 'Populer Section Show in Instructor Page',
+    "Show Gallary Images" => "Show Gallary Images",
 
 ];

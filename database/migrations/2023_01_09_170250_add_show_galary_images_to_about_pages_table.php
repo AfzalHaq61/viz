@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddAboutVideoUrlAndEnableAboutVideoTable extends Migration
+class AddShowGalaryImagesToAboutPagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateAddAboutVideoUrlAndEnableAboutVideoTable extends Migration
      */
     public function up()
     {
-        Schema::create('about_pages', function (Blueprint $table) {
-            $table->id();
-            $table->boolean('enable_about_video')->nullable();
-            $table->string('about_video_url')->nullable();
-            $table->timestamps();
+        Schema::table('about_pages', function (Blueprint $table) {
+            $table->boolean('show_galary_images')->nullable();
         });
     }
 
@@ -29,8 +26,7 @@ class CreateAddAboutVideoUrlAndEnableAboutVideoTable extends Migration
     public function down()
     {
         Schema::table('about_pages', function (Blueprint $table) {
-            $table->dropColumn('enable_about_video');
-            $table->dropColumn('about_video_url');
+            $table->dropColumn('show_galary_images');
         });
     }
 }
