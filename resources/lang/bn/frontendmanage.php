@@ -182,4 +182,10 @@ return [
     "Instructor Testemonial Subtitle" => "Instructor Testemonial Subtitle",
     "Populer Section Show in Instructor Page" => 'Populer Section Show in Instructor Page',
     "Show Gallary Images" => "Show Gallary Images",
+
+    "About Page Counter Section" => "About Page Counter Section",
+    "Add Counter Details" => "Add Counter Details",
+    "Counter Total" => "Counter Total",
+    "Counter Title" => "Counter Title",
+    "Counter Details" => "Counter Details",
 ];

@@ -16,6 +16,39 @@
             display: flex;
             justify-content: space-between
         }
+
+        .add_button {
+            background: linear-gradient(90deg, #7c32ff, #c738d8 51%, #7c32ff);
+            color: #fff;
+            background-size: 200% auto;
+            transition: all .4s ease 0s;
+            border-radius: 100px;
+            margin-left: 10px;
+            font-size: large;
+            padding-top: 3px;
+            padding-bottom: 1px;
+            border-color: transparent;
+            cursor: pointer;
+        }
+
+        .remove_button {
+            background: linear-gradient(90deg, #7c32ff, #c738d8 51%, #7c32ff);
+            color: #fff;
+            background-size: 200% auto;
+            transition: all .4s ease 0s;
+            border-radius: 100px;
+            margin-left: 10px;
+            font-size: large;
+            padding-top: 3px;
+            padding-bottom: 1px;
+            border-color: transparent;
+            cursor: pointer;
+        }
+
+        .counter {
+            margin-left: 1px;
+            margin-right: 1px;
+        }
     </style>
     <section class="sms-breadcrumb mb-40 white-box">
         <div class="container-fluid">
@@ -53,6 +86,7 @@
                         method="POST" enctype="multipart/form-data">
 
                         @csrf
+
                         <div class="white-box  student-details header-menu">
                             <div class="row">
                                 <div class="col-md-12 ">
@@ -275,155 +309,6 @@
                                                         </div>
                                                     @endif
 
-                                                    @if (currentTheme() == 'infixlmstheme' || currentTheme() == 'teachery')
-                                                        <div class="col-xl-2">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Total Teachers') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Total Teacher') }}"
-                                                                    type="text"
-                                                                    name="total_teacher[{{ $language->code }}]"
-                                                                    {{ $errors->has('total_teacher') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('total_teacher', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-4">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Teacher Title') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Teacher Title') }}"
-                                                                    type="text"
-                                                                    name="teacher_title[{{ $language->code }}]"
-                                                                    {{ $errors->has('teacher_title') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('teacher_title', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Teacher Details') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Teacher Details') }}"
-                                                                    type="text"
-                                                                    name="teacher_details[{{ $language->code }}]"
-                                                                    {{ $errors->has('teacher_details') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('teacher_details', $language->code) : '' }}">
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-12">
-                                                            <hr>
-                                                            <br>
-                                                        </div>
-                                                    @endif
-
-                                                    @if (currentTheme() == 'infixlmstheme' || currentTheme() == 'teachery')
-                                                        <div class="col-xl-2">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Total Students') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Total Student') }}"
-                                                                    type="text"
-                                                                    name="total_student[{{ $language->code }}]"
-                                                                    {{ $errors->has('total_student') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('total_student', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-4">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Student Title') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Student Title') }}"
-                                                                    type="text"
-                                                                    name="student_title[{{ $language->code }}]"
-                                                                    {{ $errors->has('student_title') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('student_title', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Student Details') }}
-                                                                </label>
-
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Student Details') }}"
-                                                                    type="text"
-                                                                    name="student_details[{{ $language->code }}]"
-                                                                    {{ $errors->has('student_details') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('student_details', $language->code) : '' }}">
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-12">
-                                                            <hr>
-                                                            <br>
-                                                        </div>
-                                                    @endif
-
-                                                    @if (currentTheme() == 'infixlmstheme' || currentTheme() == 'teachery')
-                                                        <div class="col-xl-2">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Total Courses') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Total Courses') }}"
-                                                                    type="text"
-                                                                    name="total_courses[{{ $language->code }}]"
-                                                                    {{ $errors->has('total_courses') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('total_courses', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-xl-4">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Course Title') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Course Title') }}"
-                                                                    type="text"
-                                                                    name="course_title[{{ $language->code }}]"
-                                                                    {{ $errors->has('course_title') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('course_title', $language->code) : '' }}">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-6">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Course Details') }}
-                                                                </label>
-
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Course Title') }}"
-                                                                    type="text"
-                                                                    name="course_details[{{ $language->code }}]"
-                                                                    {{ $errors->has('course_details') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($about) ? $about->getTranslation('course_details', $language->code) : '' }}">
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-xl-12">
-                                                            <hr>
-                                                            <br>
-                                                        </div>
-                                                    @endif
-
                                                     @if (currentTheme() != 'teachery')
                                                         <div class="col-xl-12">
                                                             <div class="primary_input mb-25">
@@ -574,6 +459,85 @@
                                                 </div>
                                             </div>
                                         @endforeach
+
+                                        @if (currentTheme() == 'infixlmstheme' || currentTheme() == 'teachery')
+                                            <div class="col-xl-12 white_box_tittle list_header">
+                                                <h4>{{ __('frontendmanage.About Page Counter Section') }}
+                                                </h4>
+                                            </div>
+
+                                            <div class="col-xl-12 mt-10">
+                                                <div class="primary_input mb-25">
+                                                    <label class="primary_input_label"
+                                                        for="">{{ __('frontendmanage.Add Counter Details') }}
+                                                        <button class="add_button" name="add_button" id="add_button"
+                                                            type="button"><i class="ti-plus"></i></button></label>
+
+                                                </div>
+                                            </div>
+                                            @if (!is_null(json_decode($about->counter_data, true)) && count(json_decode($about->counter_data, true)))
+                                                <div class="row counter">
+                                                    @foreach (json_decode($about->counter_data, true) as $counter_array)
+                                                        <div class="col-xl-2">
+                                                            <div class="primary_input mb-25">
+                                                                <label class="primary_input_label"
+                                                                    for="">{{ __('frontendmanage.Counter Total') }}
+                                                                </label>
+                                                                <input class="primary_input_field"
+                                                                    placeholder="{{ __('frontendmanage.Counter Total') }}"
+                                                                    type="text"
+                                                                    name="counter_total[]"
+                                                                    {{ $errors->has('counter_total') ? ' autofocus' : '' }}
+                                                                    value="{{ isset($counter_array['counter_total']) ? $counter_array['counter_total'] : '' }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-4">
+                                                            <div class="primary_input mb-25">
+                                                                <label class="primary_input_label"
+                                                                    for="">{{ __('frontendmanage.Counter Title') }}
+                                                                </label>
+                                                                <input class="primary_input_field"
+                                                                    placeholder="{{ __('frontendmanage.Counter Title') }}"
+                                                                    type="text"
+                                                                    name="counter_title[]"
+                                                                    {{ $errors->has('counter_title') ? ' autofocus' : '' }}
+                                                                    value="{{ isset($counter_array['counter_title']) ? $counter_array['counter_title'] : '' }}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-5">
+                                                            <div class="primary_input mb-25">
+                                                                <label class="primary_input_label"
+                                                                    for="">{{ __('frontendmanage.Counter Details') }}
+                                                                </label>
+                                                                <input class="primary_input_field"
+                                                                    placeholder="{{ __('frontendmanage.Counter Details') }}"
+                                                                    type="text"
+                                                                    name="counter_details[]"
+                                                                    {{ $errors->has('counter_details') ? ' autofocus' : '' }}
+                                                                    value="{{ isset($counter_array['counter_details']) ? $counter_array['counter_details'] : '' }}">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-1 mt-35">
+                                                            <div class="primary_input mb-25">
+                                                                <button class="remove_button" name="remove_button"
+                                                                    id="remove_button" type="button"><i
+                                                                        class="ti-minus"></i></button>
+
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+
+                                            <div class="col-xl-12 field_wrapper"></div>
+                                            <div class="col-xl-12">
+                                                <hr>
+                                                <br>
+                                            </div>
+                                        @endif
 
                                         <div class="col-xl-12">
                                             <div class="primary_input mb-25">
@@ -1090,6 +1054,38 @@
 
         $(".imgInput6").change(function() {
             readURL6(this);
+        });
+
+        $(document).ready(function() {
+            var maxField = 10; //Input fields increment limitation
+            var addButton = $('#add_button'); //Add button selector
+            var removeButton = $('#remove_button');
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var fieldHTML =
+                '<div class="row"><div class="col-xl-2"><div class="primary_input mb-25"><label class="primary_input_label" for="">{{ __('frontendmanage.Counter Total') }}</label><input class="primary_input_field" placeholder="{{ __('frontendmanage.Counter Total') }}" type="text" name="counter_total[]" {{ $errors->has('counter_total') ? ' autofocus' : '' }} value=""></div></div><div class="col-xl-4"><div class="primary_input mb-25"><label class="primary_input_label" for="">{{ __('frontendmanage.Counter Title') }}</label><input class="primary_input_field" placeholder="{{ __('frontendmanage.Counter Title') }}" type="text" name="counter_title[]" {{ $errors->has('counter_title') ? ' autofocus' : '' }} value=""></div></div><div class="col-xl-5"><div class="primary_input mb-25"><label class="primary_input_label" for="">{{ __('frontendmanage.Counter Details') }}</label><input class="primary_input_field" placeholder="{{ __('frontendmanage.Counter Details') }}" type="text" name="counter_details[]" {{ $errors->has('counter_details') ? ' autofocus' : '' }} value=""></div></div><div class="col-xl-1 mt-35"><div class="primary_input mb-25"><button class="add_button" name="remove_button" id="remove_button" type="button"><i class="ti-minus"></i></button></div></div></div>'; //New input field html
+            var x = 1; //Initial field counter is 1
+
+            //Once add button is clicked
+            $(addButton).click(function() {
+                //Check maximum number of input fields
+                if (x < maxField) {
+                    x++; //Increment field counter
+                    $(wrapper).append(fieldHTML); //Add field html
+                }
+            });
+
+            //Once remove button is clicked
+            $(wrapper).on('click', '#remove_button', function(e) {
+                e.preventDefault();
+                $(this).parent().parent().parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+
+            //Once remove button is clicked
+            $(removeButton).click(function() {
+                alert('hello');
+                $(this).parent().parent().parent('div').remove(); //Remove field html
+            });
         });
     </script>
 @endpush

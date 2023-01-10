@@ -1,36 +1,26 @@
 <div>
     <style>
         .counter_area::before {
-            background-image: url('{{asset($about->image4)}}');
+            background-image: url('{{ asset($about->image4) }}');
         }
     </style>
     <div class="counter_area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
-                    <div class="counter_wrapper">
-                        <div class="single_counter">
-                            <h3><span class="">{{$about->total_teacher}}</span></h3>
-                            <div class="counter_content">
-                                <h4>{{$about->teacher_title}}</h4>
-                                <p>{{$about->teacher_details}}</p>
-                            </div>
+                    @if (!is_null(json_decode($about->counter_data, true)) && count(json_decode($about->counter_data, true)))
+                        <div class="counter_wrapper">
+                            @foreach (json_decode($about->counter_data, true) as $counter_array)
+                                <div class="single_counter">
+                                    <h3><span class="">{{ $counter_array['counter_total'] }}</span></h3>
+                                    <div class="counter_content">
+                                        <h4>{{ $counter_array['counter_title'] }}</h4>
+                                        <p>{{ $counter_array['counter_details'] }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="single_counter">
-                            <h3><span class="">{{$about->total_student}}</span></h3>
-                            <div class="counter_content">
-                                <h4>{{$about->student_title}}</h4>
-                                <p>{{$about->student_details}}</p>
-                            </div>
-                        </div>
-                        <div class="single_counter">
-                            <h3><span class="">{{$about->total_courses}}</span></h3>
-                            <div class="counter_content">
-                                <h4>{{$about->course_title}}</h4>
-                                <p>{{$about->course_details}}</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>

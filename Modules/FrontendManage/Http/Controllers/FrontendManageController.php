@@ -163,8 +163,6 @@ class FrontendManageController extends Controller
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('frontend.homeContent');
-
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -177,7 +175,6 @@ class FrontendManageController extends Controller
             return view('frontendmanage::page_content', compact('page_content'));
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
-
         }
     }
 
@@ -243,7 +240,6 @@ class FrontendManageController extends Controller
         // return $request;
         if (demoCheck()) {
             return redirect()->back();
-
         }
         try {
             $data = TopbarSetting::getData();
@@ -339,12 +335,9 @@ class FrontendManageController extends Controller
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('frontend.pageContent');
-
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
 
@@ -395,8 +388,6 @@ class FrontendManageController extends Controller
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
-
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -450,7 +441,6 @@ class FrontendManageController extends Controller
                 Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
                 return redirect()->back();
             }
-
         } catch (\Exception $e) {
             dd($e);
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
@@ -630,7 +620,6 @@ class FrontendManageController extends Controller
             $frontend->save();
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('frontend.sectionSetting');
-
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
@@ -705,36 +694,48 @@ class FrontendManageController extends Controller
             foreach ((array)$request->story_description as $key => $value) {
                 $about->setTranslation('story_description', $key, $value);
             }
-            foreach ((array)$request->teacher_title as $key => $value) {
-                $about->setTranslation('teacher_title', $key, $value);
+            // foreach ((array)$request->teacher_title as $key => $value) {
+            //     $about->setTranslation('teacher_title', $key, $value);
+            // }
+
+            // foreach ((array)$request->teacher_details as $key => $value) {
+            //     $about->setTranslation('teacher_details', $key, $value);
+            // }
+            // foreach ((array)$request->course_title as $key => $value) {
+            //     $about->setTranslation('course_title', $key, $value);
+            // }
+
+            // foreach ((array)$request->course_details as $key => $value) {
+            //     $about->setTranslation('course_details', $key, $value);
+            // }
+            // foreach ((array)$request->student_title as $key => $value) {
+            //     $about->setTranslation('student_title', $key, $value);
+            // }
+            // foreach ((array)$request->student_details as $key => $value) {
+            //     $about->setTranslation('student_details', $key, $value);
+            // }
+            // foreach ((array)$request->total_student as $key => $value) {
+            //     $about->setTranslation('total_student', $key, $value);
+            // }
+            // foreach ((array)$request->total_teacher as $key => $value) {
+            //     $about->setTranslation('total_teacher', $key, $value);
+            // }
+            // foreach ((array)$request->total_courses as $key => $value) {
+            //     $about->setTranslation('total_courses', $key, $value);
+            // }
+
+            $counter_total = $request->counter_total;
+            $counter_title = $request->counter_title;
+            $counter_details = $request->counter_details;
+
+            $counter_data = [];
+
+            for ($i = 0; $i < count($counter_total); $i++) {
+                $counter_array = array('counter_total' => $counter_total[$i], 'counter_title' => $counter_title[$i], 'counter_details' => $counter_details[$i]);
+                array_push($counter_data, $counter_array);
             }
 
-            foreach ((array)$request->teacher_details as $key => $value) {
-                $about->setTranslation('teacher_details', $key, $value);
-            }
-            foreach ((array)$request->course_title as $key => $value) {
-                $about->setTranslation('course_title', $key, $value);
-            }
-
-            foreach ((array)$request->course_details as $key => $value) {
-                $about->setTranslation('course_details', $key, $value);
-            }
-            foreach ((array)$request->student_title as $key => $value) {
-                $about->setTranslation('student_title', $key, $value);
-            }
-            foreach ((array)$request->student_details as $key => $value) {
-                $about->setTranslation('student_details', $key, $value);
-            }
-            foreach ((array)$request->total_student as $key => $value) {
-                $about->setTranslation('total_student', $key, $value);
-            }
-            foreach ((array)$request->total_teacher as $key => $value) {
-                $about->setTranslation('total_teacher', $key, $value);
-            }
-            foreach ((array)$request->total_courses as $key => $value) {
-                $about->setTranslation('total_courses', $key, $value);
-            }
-
+            $about->counter_data = json_encode($counter_data);
 
             foreach ((array)$request->about_page_content_title as $key => $value) {
                 $about->setTranslation('about_page_content_title', $key, $value);
@@ -827,11 +828,9 @@ class FrontendManageController extends Controller
             $about->save();
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
-
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
     public function socialSettingSave(Request $request)
@@ -860,11 +859,9 @@ class FrontendManageController extends Controller
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->back();
-
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-
     }
 
     public function socialSettingUpdate(Request $request)
@@ -873,7 +870,8 @@ class FrontendManageController extends Controller
             return redirect()->back();
         }
 
-        $rules = ['id' => 'required',
+        $rules = [
+            'id' => 'required',
             'name' => 'required',
             'icon' => 'required',
             'btn_link' => 'required',
@@ -893,7 +891,6 @@ class FrontendManageController extends Controller
 
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect('frontend/social-setting');
-
         } catch (Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
