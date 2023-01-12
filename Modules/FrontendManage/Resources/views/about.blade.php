@@ -476,56 +476,54 @@
                                                 </div>
                                             </div>
                                             @if (!is_null(json_decode($about->counter_data, true)) && count(json_decode($about->counter_data, true)))
-                                                <div class="row counter">
+                                                <div class="counter">
                                                     @foreach (json_decode($about->counter_data, true) as $counter_array)
-                                                        <div class="col-xl-2">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Counter Total') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Counter Total') }}"
-                                                                    type="text"
-                                                                    name="counter_total[]"
-                                                                    {{ $errors->has('counter_total') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($counter_array['counter_total']) ? $counter_array['counter_total'] : '' }}">
+                                                        <div class="row">
+                                                            <div class="col-xl-2">
+                                                                <div class="primary_input mb-25">
+                                                                    <label class="primary_input_label"
+                                                                        for="">{{ __('frontendmanage.Counter Total') }}
+                                                                    </label>
+                                                                    <input class="primary_input_field"
+                                                                        placeholder="{{ __('frontendmanage.Counter Total') }}"
+                                                                        type="text" name="counter_total[]"
+                                                                        {{ $errors->has('counter_total') ? ' autofocus' : '' }}
+                                                                        value="{{ isset($counter_array['counter_total']) ? $counter_array['counter_total'] : '' }}">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-4">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Counter Title') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Counter Title') }}"
-                                                                    type="text"
-                                                                    name="counter_title[]"
-                                                                    {{ $errors->has('counter_title') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($counter_array['counter_title']) ? $counter_array['counter_title'] : '' }}">
+                                                            <div class="col-xl-4">
+                                                                <div class="primary_input mb-25">
+                                                                    <label class="primary_input_label"
+                                                                        for="">{{ __('frontendmanage.Counter Title') }}
+                                                                    </label>
+                                                                    <input class="primary_input_field"
+                                                                        placeholder="{{ __('frontendmanage.Counter Title') }}"
+                                                                        type="text" name="counter_title[]"
+                                                                        {{ $errors->has('counter_title') ? ' autofocus' : '' }}
+                                                                        value="{{ isset($counter_array['counter_title']) ? $counter_array['counter_title'] : '' }}">
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="col-xl-5">
-                                                            <div class="primary_input mb-25">
-                                                                <label class="primary_input_label"
-                                                                    for="">{{ __('frontendmanage.Counter Details') }}
-                                                                </label>
-                                                                <input class="primary_input_field"
-                                                                    placeholder="{{ __('frontendmanage.Counter Details') }}"
-                                                                    type="text"
-                                                                    name="counter_details[]"
-                                                                    {{ $errors->has('counter_details') ? ' autofocus' : '' }}
-                                                                    value="{{ isset($counter_array['counter_details']) ? $counter_array['counter_details'] : '' }}">
+                                                            <div class="col-xl-5">
+                                                                <div class="primary_input mb-25">
+                                                                    <label class="primary_input_label"
+                                                                        for="">{{ __('frontendmanage.Counter Details') }}
+                                                                    </label>
+                                                                    <input class="primary_input_field"
+                                                                        placeholder="{{ __('frontendmanage.Counter Details') }}"
+                                                                        type="text" name="counter_details[]"
+                                                                        {{ $errors->has('counter_details') ? ' autofocus' : '' }}
+                                                                        value="{{ isset($counter_array['counter_details']) ? $counter_array['counter_details'] : '' }}">
 
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="col-xl-1 mt-35">
-                                                            <div class="primary_input mb-25">
-                                                                <button class="remove_button" name="remove_button"
-                                                                    id="remove_button" type="button"><i
-                                                                        class="ti-minus"></i></button>
-
+                                                            <div class="col-xl-1 mt-35">
+                                                                <div class="primary_input mb-25">
+                                                                    <button class="remove_button" name="remove_button"><i
+                                                                            class="ti-minus"></i>
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     @endforeach
@@ -1083,9 +1081,13 @@
 
             //Once remove button is clicked
             $(removeButton).click(function() {
-                alert('hello');
-                $(this).parent().parent().parent('div').remove(); //Remove field html
+                $(this).parent().parent('div').remove(); //Remove field html
             });
+
+            //Once remove button is clicked
+            $('.remove_button').on('click', function() {
+                $(this).parent().parent().parent('div').remove(); //Remove field html
+            })
         });
     </script>
 @endpush

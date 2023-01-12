@@ -165,5 +165,9 @@
     "Counter Total" => "Counter Total",
     "Counter Title" => "Counter Title",
     "Counter Details" => "Counter Details",
+
+    "Add Key Feature" => "Add Key Feature",
+    "Show Key Feature" => "Show Key Feature",
+    "Delete" => "Delete",
         ]
 ?>

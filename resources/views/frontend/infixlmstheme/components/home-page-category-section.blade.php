@@ -52,83 +52,30 @@
                 <div class="col-xl-10">
                     @if (isset($homeContent))
                         @if ($homeContent->show_key_feature == 1)
-
                             <div class="couses_category">
-                                <div class="row">
-                                    <div class="col-xl-4 col-md-4">
-                                        <div class="single_course_cat">
+                                <div class="row d-flex justify-content-around">
+                                    @foreach ($key_features as $key_feature)
+                                    @if($key_feature->show_key_feature == 1)
+                                        <div class="single_course_cat">   
                                             <div class="icon">
-                                                @if (!empty($homeContent->key_feature_logo1))
-                                                    <img src="{{ asset($homeContent->key_feature_logo1) }}"
-                                                        alt="">
-                                                @endif
+                                                <img src="{{ asset($key_feature->key_feature_logo) }}"
+                                                    alt="">
                                             </div>
                                             <div class="course_content">
                                                 <h4>
-                                                    @if (!empty($homeContent->feature_link1))
-                                                        <a href="{{ $homeContent->feature_link1 }}">
-                                                    @endif
-                                                    {{ $homeContent->key_feature_title1 }}
-                                                    @if (!empty($homeContent->feature_link1))
-                                                        </a>
-                                                    @endif
+                                                    <a href="{{ $key_feature->key_feature_link }}">
+                                                        {{ $key_feature->key_feature_title }}
+                                                    </a>
                                                 </h4>
-                                                <p>{{ $homeContent->key_feature_subtitle1 }} </p>
+                                                <p>{{ $key_feature->key_feature_subtitle }} </p>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-md-4">
-                                        <div class="single_course_cat">
-                                            <div class="icon">
-                                                @if (!empty($homeContent->key_feature_logo2))
-                                                    <img src="{{ asset($homeContent->key_feature_logo2) }}"
-                                                        alt="">
-                                                @endif
-                                            </div>
-                                            <div class="course_content">
-                                                <h4>
-                                                    @if (!empty($homeContent->feature_link2))
-                                                        <a href="{{ $homeContent->feature_link2 }}">
-                                                    @endif
-                                                    {{ $homeContent->key_feature_title2 }}
-                                                    @if (!empty($homeContent->feature_link2))
-                                                        </a>
-                                                    @endif
-                                                </h4>
-                                                <p>{{ $homeContent->key_feature_subtitle2 }} </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xl-4 col-md-4">
-                                        <div class="single_course_cat">
-                                            <div class="icon">
-                                                @if (!empty($homeContent->key_feature_logo3))
-                                                    <img src="{{ asset($homeContent->key_feature_logo3) }}"
-                                                        alt="">
-                                                @endif
-                                            </div>
-                                            <div class="course_content">
-                                                <h4>
-                                                    @if (!empty($homeContent->feature_link3))
-                                                        <a href="{{ $homeContent->feature_link3 }}">
-                                                    @endif
-                                                    {{ $homeContent->key_feature_title3 }}
-                                                    @if (!empty($homeContent->feature_link3))
-                                                        </a>
-                                                    @endif
-                                                </h4>
-                                                <p>{{ $homeContent->key_feature_subtitle3 }} </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    @endif
+                                    @endforeach     
                                 </div>
                             </div>
                         @endif
                     @endif
-
                 </div>
             </div>
         </div>

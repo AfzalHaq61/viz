@@ -48,6 +48,10 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::get('home-content', 'FrontendManageController@HomeContent')->name('homeContent');
     Route::post('home-content', 'FrontendManageController@HomeContentUpdate')->name('homeContent_Update');
 
+    Route::post('key-feature/add', 'FrontendManageController@CreateKeyFeature')->name('createKeyFeature');
+    Route::post('key-feature/update', 'FrontendManageController@UpdateKeyFeature')->name('updateKeyFeature');
+    Route::get('key-feature/delete', 'FrontendManageController@DeleteKeyFeature')->name('deleteKeyFeature');
+    
     //Topbar Setting
     Route::get('top-bar-settings', 'FrontendManageController@showTopBarSettings')->name('showTopBarSettings');
     Route::post('top-bar-settings', 'FrontendManageController@saveTopBarSettings')->name('saveTopBarSettings');

@@ -72,21 +72,535 @@
             </div>
         </div>
     </section>
-    <section class=" student-details">
+    <section class="student-details">
         <div class="container-fluid p-0">
             <div class="row">
                 <div class="offset-lg-10 col-lg-2 text-right col-md-12 mb-15">
                     <a target="_blank" href="{{ url('/') }}" class="primary-btn small fix-gr-bg"> <span
                             class="ti-eye pr-2"></span> {{ __('student.Preview') }} </a>
                 </div>
-                <div class="col-lg-12">
+                <div class="white-box">
+                    <div class="col-lg-12">
+                        <form class="form-horizontal" action="{{ route('frontend.updateKeyFeature') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal fade admin-query" id="update_key_feature_modal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">
+                                                {{ __('frontendmanage.Add Key Feature') }}
+                                            </h4>
+                                            <button type="button" class="close" data-dismiss="modal">
+                                                <i class="ti-close "></i>
+                                            </button>
+                                        </div>
 
+                                        <div class="modal-body student-details header-menu">
+                                            <div class="row pt-0">
+                                                @if (isModuleActive('FrontendMultiLang'))
+                                                    <ul class="nav nav-tabs no-bottom-border  mt-sm-md-20 mb-10 ml-3"
+                                                        role="tablist">
+                                                        @foreach ($LanguageList as $key => $language)
+                                                            <li class="nav-item">
+                                                                <a class="nav-link  @if (auth()->user()->language_code == $language->code) active @endif"
+                                                                    href="#elementkey1{{ $language->code }}" role="tab"
+                                                                    data-toggle="tab">{{ $language->native }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @endif
+                                            </div>
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade show active" id="elementkey">
+                                                    <div class="row">
+                                                        <input type="hidden" id="modal_key_feature_id"
+                                                            name="update_key_feature_id">
+                                                        <div class="col-xl-12">
+                                                            <div class="primary_input mb-25">
+                                                                <label class="primary_input_label"
+                                                                    for="">{{ __('common.Title') }}</label>
+                                                                <input class="primary_input_field"
+                                                                    placeholder="{{ __('common.Title') }}" type="text"
+                                                                    name="update_key_feature_title"
+                                                                    id="modal_key_feature_title"
+                                                                    {{ $errors->has('update_key_feature_title') ? ' autofocus' : '' }}>
+                                                            </div>
+                                                        </div>
+                                                        @if ($currentTheme != 'Edume')
+                                                            <div class="col-xl-12">
+                                                                <div class="primary_input mb-25">
+                                                                    <label class="primary_input_label" for="">
+                                                                        {{ __('frontendmanage.Key Feature Subtitle') }}
+                                                                    </label>
+                                                                    <input class="primary_input_field"
+                                                                        placeholder="{{ __('frontendmanage.Key Feature Subtitle') }}"
+                                                                        type="text" name="update_key_feature_subtitle"
+                                                                        id="modal_key_feature_subtitle"
+                                                                        {{ $errors->has('update_key_feature_subtitle') ? ' autofocus' : '' }}>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="primary_input mb-25">
+                                                <label class="primary_input_label"
+                                                    for="">{{ __('frontendmanage.Page Link') }}</label>
+
+                                                <select class="primary_select" name="update_key_feature_link" id="modal_key_feature_link"
+                                                    {{ $errors->has('host') ? 'autofocus' : '' }}>
+                                                    <option
+                                                        data-display="{{ __('common.Select') }} {{ __('frontendmanage.Page Link') }}"
+                                                        value="">
+                                                        {{ __('common.Select') }}
+                                                        {{ __('frontendmanage.Page Link') }}
+
+                                                    </option>
+                                                    @foreach ($pages as $page)
+                                                        <option @if (getRawHomeContents($home_content, 'key_feature_link1', 'en') == $page->id) selected @endif
+                                                            value="{{ $page->id }}">
+
+                                                            {{ $page->title }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <br>
+                                            <div class="primary_input mb-25 mt-25">
+                                                <label class="primary_input_label"
+                                                    for="">{{ __('frontendmanage.Key Feature Icon') }}
+                                                    <small>({{ __('common.Recommended Size') }}
+                                                        50x50 px)</small>
+                                                </label>
+                                                <div class="primary_file_uploader">
+                                                    <input
+                                                        class="primary-input  filePlaceholder {{ @$errors->has('update_key_feature_logo') ? ' is-invalid' : '' }}"
+                                                        type="text" id="" placeholder="Browse file"
+                                                        readonly=""
+                                                        {{ $errors->has('update_key_feature_logo') ? ' autofocus' : '' }}>
+                                                    <button class="" type="button">
+                                                        <label class="primary-btn small fix-gr-bg"
+                                                            for="modal_key_feature_logo">{{ __('common.Browse') }}</label>
+                                                        <input type="file" class="d-none imgInput4"
+                                                            name="update_key_feature_logo" id="modal_key_feature_logo">
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            {{-- <div class="col-xl-12">
+                                                <div
+                                                    class="primary_input mt_25 mb-25">
+                                                    <img class=" imagePreview6"
+                                                        style="max-width: 100%"
+                                                        src="{{ asset('/' . getRawHomeContents($home_content, 'key_feature_logo1', 'en')) }}"
+                                                        id="modal_key_feature_logo_image"
+                                                        alt="">
+                                                </div>
+                                            </div> --}}
+
+                                            <div class="primary_input mb-25">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label
+                                                            class="primary_input_label"
+                                                            for="">
+                                                            {{ __('frontendmanage.Show Key Feature') }}</label>
+                                                    </div>
+
+                                                    <div
+                                                        class="col-md-2 mb-25">
+                                                        <label
+                                                            class="primary_checkbox d-flex mr-12"
+                                                            for="update_show_key_feature1">
+                                                            <input
+                                                                type="radio"
+                                                                class="common-radio drip1"
+                                                                id="update_show_key_feature1"
+                                                                name="update_show_key_feature"
+                                                                value="1"
+                                                                checked>
+                                                            <span
+                                                                class="checkmark mr-2"></span>
+                                                            {{ __('common.Yes') }}
+                                                        </label>
+                                                    </div>
+                                                    <div
+                                                        class="col-md-2 mb-25">
+                                                        <label
+                                                            class="primary_checkbox d-flex mr-12"
+                                                            for="update_show_key_feature0">
+                                                            <input
+                                                                type="radio"
+                                                                class="common-radio drip0"
+                                                                id="update_show_key_feature0"
+                                                                name="update_show_key_feature"
+                                                                value="0">
+                                                            <span
+                                                                class="checkmark mr-2"></span>
+                                                            {{ __('common.No') }}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-40 d-flex justify-content-between">
+                                                <button type="button" class="primary-btn tr-bg"
+                                                    data-dismiss="modal">{{ __('common.Cancel') }}</button>
+
+                                                <button class="primary-btn fix-gr-bg"
+                                                    type="submit">{{ __('common.Submit') }}
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <form class="form-horizontal" action="{{ route('frontend.createKeyFeature') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="student-details header-menu">
+                                <div class="col-md-12 ">
+                                    <input type="hidden" name="url" id="url" value="{{ URL::to('/') }}">
+                                    <div class="row mb-30">
+                                        @php
+                                            if (Settings('frontend_active_theme') == 'tvt') {
+                                                $ids = [1, 3, 18, 19, 20, 21];
+                                                $blocks = $blocks->whereIn('id', $ids);
+                                            }
+                                        @endphp
+                                        @foreach ($blocks as $block)
+                                            @if ($block->id == 2)
+                                                <div data-id="{{ $block->id }}" class="row">
+                                                    <div class="accordion" id="accordionHomeContent">
+                                                        <div class="card">
+                                                            <div class="card-header" id="heading{{ $block->id }}">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-block text-left" type="button"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapse{{ $block->id }}"
+                                                                        aria-expanded="true"
+                                                                        aria-controls="collapse{{ $block->id }}">
+                                                                        {{ __('frontendmanage.Key Features Show In Homepage') }}
+
+                                                                        <small class="text-danger">
+                                                                            @if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 1 &&
+                                                                                @getRawHomeContents($home_content, 'show_category_section', 'en') != 1)
+                                                                                ({{ __('frontendmanage.Category Section Show In Homepage') }}
+                                                                                {{ __('frontend.is required') }})
+                                                                            @endif
+                                                                        </small>
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
+
+                                                            <div id="collapse{{ $block->id }}" class="collapse show"
+                                                                aria-labelledby="heading{{ $block->id }}"
+                                                                data-parent="#accordionHomeContent">
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-xl-12 ">
+                                                                            <div class="mb_25">
+                                                                                <label class="switch_toggle "
+                                                                                    for="key_feature_show">
+                                                                                    <input type="checkbox"
+                                                                                        class="status_enable_disable"
+                                                                                        name="show_key_feature"
+                                                                                        id="key_feature_show"
+                                                                                        @if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 1) checked @endif
+                                                                                        value="1">
+                                                                                    <i class="slider round"></i>
+
+
+                                                                                </label>
+                                                                                {{ __('frontendmanage.Key Features Show In Homepage') }}
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-xl-3">
+                                                                            <div class="primary_input mb-25">
+                                                                                <button type="button"
+                                                                                    class="primary-btn radius_30px mr-10 fix-gr-bg"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#addKeyFeature">
+                                                                                    {{ __('frontendmanage.Add Key Feature') }}
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div id="keyFeatureBox" class="col-md-12"
+                                                                            style="@if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 0) display:none @endif ">
+
+                                                                            <div class="row col-xl-12">
+                                                                                @foreach ($key_features as $key_feature)
+                                                                                    <div class="col-xl-2 text-left">
+                                                                                        <div class="primary_input mb-25">
+                                                                                            {{ isset($key_feature->key_feature_title) ? $key_feature->key_feature_title : '' }}
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    @if ($currentTheme != 'Edume')
+                                                                                        <div class="col-xl-3 text-left">
+                                                                                            <div
+                                                                                                class="primary_input mb-25">
+                                                                                                {{ isset($key_feature->key_feature_subtitle) ? $key_feature->key_feature_subtitle : '' }}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif
+
+                                                                                    <div class="col-xl-3">
+                                                                                        <div class="primary_input mb-25">
+                                                                                            <img style="max-width: 100%"
+                                                                                                src="{{ isset($key_feature->key_feature_logo) ? asset($key_feature->key_feature_logo) : '' }} "
+                                                                                                alt="">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-xl-2">
+                                                                                        <div class="primary_input mb-25">
+                                                                                            <button type="button"
+                                                                                                class="update_key_feature_button primary-btn radius_30px mr-10 fix-gr-bg"
+                                                                                                data-feature="{{ $key_feature }}">
+                                                                                                {{ __('frontendmanage.Change') }}
+                                                                                            </button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-xl-2">
+                                                                                        <div class="primary_input mb-25">
+                                                                                            <a class="primary-btn radius_30px mr-10 fix-gr-bg"
+                                                                                                href=" {{ url('frontend/key-feature/delete/?id=' . $key_feature->id) }}">{{ __('frontendmanage.Delete') }}
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xl-12">
+                                                                        <div class="modal fade admin-query"
+                                                                            id="addKeyFeature">
+                                                                            <div
+                                                                                class="modal-dialog modal-dialog-centered">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h4 class="modal-title">
+                                                                                            {{ __('frontendmanage.Add Key Feature') }}
+                                                                                        </h4>
+                                                                                        <button type="button"
+                                                                                            class="close"
+                                                                                            data-dismiss="modal">
+                                                                                            <i class="ti-close "></i>
+                                                                                        </button>
+                                                                                    </div>
+
+                                                                                    <div
+                                                                                        class="modal-body student-details header-menu">
+                                                                                        <div class="row pt-0">
+                                                                                            @if (isModuleActive('FrontendMultiLang'))
+                                                                                                <ul class="nav nav-tabs no-bottom-border  mt-sm-md-20 mb-10 ml-3"
+                                                                                                    role="tablist">
+                                                                                                    @foreach ($LanguageList as $key => $language)
+                                                                                                        <li
+                                                                                                            class="nav-item">
+                                                                                                            <a class="nav-link  @if (auth()->user()->language_code == $language->code) active @endif"
+                                                                                                                href="#elementkey1{{ $language->code }}"
+                                                                                                                role="tab"
+                                                                                                                data-toggle="tab">{{ $language->native }}
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                    @endforeach
+                                                                                                </ul>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                        <div class="tab-content">
+                                                                                            <div role="tabpanel"
+                                                                                                class="tab-pane fade show active"
+                                                                                                id="elementkey">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-xl-12">
+                                                                                                        <div
+                                                                                                            class="primary_input mb-25">
+                                                                                                            <label
+                                                                                                                class="primary_input_label"
+                                                                                                                for="">{{ __('common.Title') }}</label>
+                                                                                                            <input
+                                                                                                                class="primary_input_field"
+                                                                                                                placeholder="{{ __('common.Title') }}"
+                                                                                                                type="text"
+                                                                                                                name="key_feature_title"
+                                                                                                                {{ $errors->has('key_feature_title') ? ' autofocus' : '' }}>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    @if ($currentTheme != 'Edume')
+                                                                                                        <div
+                                                                                                            class="col-xl-12">
+                                                                                                            <div
+                                                                                                                class="primary_input mb-25">
+                                                                                                                <label
+                                                                                                                    class="primary_input_label"
+                                                                                                                    for="">
+                                                                                                                    {{ __('frontendmanage.Key Feature Subtitle') }}
+                                                                                                                </label>
+                                                                                                                <input
+                                                                                                                    class="primary_input_field"
+                                                                                                                    placeholder="{{ __('frontendmanage.Key Feature Subtitle') }}"
+                                                                                                                    type="text"
+                                                                                                                    name="key_feature_subtitle"
+                                                                                                                    {{ $errors->has('key_feature_subtitle') ? ' autofocus' : '' }}>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    @endif
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        <div class="primary_input mb-25">
+                                                                                            <label
+                                                                                                class="primary_input_label"
+                                                                                                for="">{{ __('frontendmanage.Page Link') }}</label>
+
+                                                                                            <select class="primary_select"
+                                                                                                name="key_feature_link"
+                                                                                                {{ $errors->has('host') ? 'autofocus' : '' }}
+                                                                                                id="">
+                                                                                                <option
+                                                                                                    data-display="{{ __('common.Select') }} {{ __('frontendmanage.Page Link') }}"
+                                                                                                    value="">
+                                                                                                    {{ __('common.Select') }}
+                                                                                                    {{ __('frontendmanage.Page Link') }}
+
+                                                                                                </option>
+                                                                                                @foreach ($pages as $page)
+                                                                                                    <option
+                                                                                                        @if (getRawHomeContents($home_content, 'key_feature_link1', 'en') == $page->id) selected @endif
+                                                                                                        value="{{ $page->id }}">
+
+                                                                                                        {{ $page->title }}
+                                                                                                    </option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <br>
+                                                                                        <div
+                                                                                            class="primary_input mb-25 mt-25">
+                                                                                            <label
+                                                                                                class="primary_input_label"
+                                                                                                for="">{{ __('frontendmanage.Key Feature Icon') }}
+                                                                                                <small>({{ __('common.Recommended Size') }}
+                                                                                                    50x50 px)</small>
+                                                                                            </label>
+                                                                                            <div
+                                                                                                class="primary_file_uploader">
+                                                                                                <input
+                                                                                                    class="primary-input  filePlaceholder {{ @$errors->has('key_feature_logo') ? ' is-invalid' : '' }}"
+                                                                                                    type="text"
+                                                                                                    id=""
+                                                                                                    placeholder="Browse file"
+                                                                                                    readonly=""
+                                                                                                    {{ $errors->has('key_feature_logo') ? ' autofocus' : '' }}>
+                                                                                                <button class=""
+                                                                                                    type="button">
+                                                                                                    <label
+                                                                                                        class="primary-btn small fix-gr-bg"
+                                                                                                        for="file4">{{ __('common.Browse') }}</label>
+                                                                                                    <input type="file"
+                                                                                                        class="d-none imgInput4"
+                                                                                                        name="key_feature_logo"
+                                                                                                        id="file4">
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="primary_input mb-25">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                    <label
+                                                                                                        class="primary_input_label"
+                                                                                                        for="">
+                                                                                                        {{ __('frontendmanage.Show Key Feature') }}</label>
+                                                                                                </div>
+
+                                                                                                <div
+                                                                                                    class="col-md-2 mb-25">
+                                                                                                    <label
+                                                                                                        class="primary_checkbox d-flex mr-12"
+                                                                                                        for="show_key_feature1">
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            class="common-radio drip1"
+                                                                                                            id="show_key_feature1"
+                                                                                                            name="show_key_feature"
+                                                                                                            value="1"
+                                                                                                            checked>
+                                                                                                        <span
+                                                                                                            class="checkmark mr-2"></span>
+                                                                                                        {{ __('common.Yes') }}
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="col-md-2 mb-25">
+                                                                                                    <label
+                                                                                                        class="primary_checkbox d-flex mr-12"
+                                                                                                        for="show_key_feature0">
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            class="common-radio drip0"
+                                                                                                            id="show_key_feature0"
+                                                                                                            name="show_key_feature"
+                                                                                                            value="0">
+                                                                                                        <span
+                                                                                                            class="checkmark mr-2"></span>
+                                                                                                        {{ __('common.No') }}
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div
+                                                                                            class="mt-40 d-flex justify-content-between">
+                                                                                            <button type="button"
+                                                                                                class="primary-btn tr-bg"
+                                                                                                data-dismiss="modal">{{ __('common.Cancel') }}</button>
+
+                                                                                            <button
+                                                                                                class="primary-btn fix-gr-bg"
+                                                                                                type="submit">{{ __('common.Submit') }}
+                                                                                            </button>
+
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
                     <form class="form-horizontal" action="{{ route('frontend.homeContent_Update') }}" method="POST"
                         enctype="multipart/form-data">
 
                         @csrf
-                        <div class="white-box  student-details header-menu">
+                        <div class="student-details header-menu">
 
                             <div class="col-md-12 ">
                                 <input type="hidden" name="url" id="url" value="{{ URL::to('/') }}">
@@ -411,23 +925,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            @elseif($block->id == 2)
+                                                {{-- @elseif($block->id == 2)
                                                 @if ($currentTheme != 'teachery')
                                                     <div data-id="{{ $block->id }}" class="row">
                                                         <div class="accordion" id="accordionHomeContent">
                                                             <div class="card">
                                                                 <div class="card-header" id="heading{{ $block->id }}">
                                                                     <h2 class="mb-0">
-                                                                        <button class="btn btn-block text-left"
-                                                                            type="button" data-toggle="collapse"
+                                                                        <button class="btn btn-block text-left" type="button"
+                                                                            data-toggle="collapse"
                                                                             data-target="#collapse{{ $block->id }}"
                                                                             aria-expanded="true"
                                                                             aria-controls="collapse{{ $block->id }}">
                                                                             {{ __('frontendmanage.Key Features Show In Homepage') }}
-
+    
                                                                             <small class="text-danger">
-                                                                                @if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 1 &&
-                                                                                    @getRawHomeContents($home_content, 'show_category_section', 'en') != 1)
+                                                                                @if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 1 && @getRawHomeContents($home_content, 'show_category_section', 'en') != 1)
                                                                                     ({{ __('frontendmanage.Category Section Show In Homepage') }}
                                                                                     {{ __('frontend.is required') }})
                                                                                 @endif
@@ -435,9 +948,8 @@
                                                                         </button>
                                                                     </h2>
                                                                 </div>
-
-                                                                <div id="collapse{{ $block->id }}"
-                                                                    class="collapse show"
+    
+                                                                <div id="collapse{{ $block->id }}" class="collapse show"
                                                                     aria-labelledby="heading{{ $block->id }}"
                                                                     data-parent="#accordionHomeContent">
                                                                     <div class="card-body">
@@ -453,142 +965,494 @@
                                                                                             @if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 1) checked @endif
                                                                                             value="1">
                                                                                         <i class="slider round"></i>
-
-
+    
+    
                                                                                     </label>
                                                                                     {{ __('frontendmanage.Key Features Show In Homepage') }}
                                                                                 </div>
                                                                             </div>
-
-
-                                                                            <div id="keyFeatureBox"
-                                                                                class="col-md-12 text-center"
+    
+                                                                            <div class="col-xl-3">
+                                                                                <div class="primary_input mb-25">
+                                                                                    <button type="button"
+                                                                                        class="primary-btn radius_30px mr-10 fix-gr-bg"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#addKeyFeature">
+                                                                                        {{ __('frontendmanage.Add Key Feature') }}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+    
+    
+                                                                            <div id="keyFeatureBox" class="col-md-12"
                                                                                 style="@if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 0) display:none @endif ">
-
+    
                                                                                 <div class="row col-xl-12">
-                                                                                    <div class="col-xl-3 text-left">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            {{ isset($home_content) ? getRawHomeContents($home_content, 'key_feature_title1', app()->getLocale()) : '' }}
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    @if ($currentTheme != 'Edume')
-                                                                                        <div class="col-xl-3 text-left">
-                                                                                            <div
-                                                                                                class="primary_input mb-25">
-                                                                                                {{ isset($home_content) ? getRawHomeContents($home_content, 'key_feature_subtitle1', app()->getLocale()) : '' }}
+                                                                                    @foreach ($key_features as $key_feature)
+                                                                                        <div class="col-xl-2 text-left">
+                                                                                            <div class="primary_input mb-25">
+                                                                                                {{ isset($key_feature->key_feature_title) ? $key_feature->key_feature_title : '' }}
                                                                                             </div>
                                                                                         </div>
-                                                                                    @endif
-
-                                                                                    <div class="col-xl-3">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            <img style="max-width: 100%"
-                                                                                                src="{{ isset($home_content) ? asset(getRawHomeContents($home_content, 'key_feature_logo1', 'en')) : '' }} "
-                                                                                                alt="">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-3">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            <button type="button"
-                                                                                                class="primary-btn radius_30px mr-10 fix-gr-bg"
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#keyFeature1">
-                                                                                                {{ __('frontendmanage.Change') }}
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-
-                                                                                <div class="row col-xl-12">
-                                                                                    <div class="col-xl-3 text-left">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            {{ isset($home_content) ? getRawHomeContents($home_content, 'course_page_sub_title', app()->getLocale()) : '' }}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    @if ($currentTheme != 'Edume')
-                                                                                        <div class="col-xl-3 text-left">
-                                                                                            <div
-                                                                                                class="primary_input mb-25">
-                                                                                                {{ isset($home_content) ? getRawHomeContents($home_content, 'key_feature_subtitle2', app()->getLocale()) : '' }}
+    
+                                                                                        @if ($currentTheme != 'Edume')
+                                                                                            <div class="col-xl-3 text-left">
+                                                                                                <div
+                                                                                                    class="primary_input mb-25">
+                                                                                                    {{ isset($key_feature->key_feature_title) ? $key_feature->key_feature_title : '' }}
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        @endif
+    
+                                                                                        <div class="col-xl-3">
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <img style="max-width: 100%"
+                                                                                                    src="{{ isset($key_feature->key_feature_logo) ? asset($key_feature->key_feature_logo) : '' }} "
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
-                                                                                    @endif
-
-                                                                                    <div class="col-xl-3">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            <img style="max-width: 100%"
-                                                                                                src="{{ isset($home_content) ? asset(getRawHomeContents($home_content, 'key_feature_logo2', 'en')) : '' }} "
-                                                                                                alt="">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-3">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            <button type="button"
-                                                                                                class="primary-btn radius_30px mr-10 fix-gr-bg"
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#keyFeature2">
-                                                                                                {{ __('frontendmanage.Change') }}
-
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-
-                                                                                <div class="row col-xl-12">
-                                                                                    <div class="col-xl-3 text-left">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            {{ isset($home_content) ? getRawHomeContents($home_content, 'key_feature_title3', app()->getLocale()) : '' }}
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    @if ($currentTheme != 'Edume')
-                                                                                        <div class="col-xl-3 text-left">
-                                                                                            <div
-                                                                                                class="primary_input mb-25">
-                                                                                                {{ isset($home_content) ? getRawHomeContents($home_content, 'key_feature_subtitle3', app()->getLocale()) : '' }}
+                                                                                        <div class="col-xl-2">
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <button type="button"
+                                                                                                    class="primary-btn radius_30px mr-10 fix-gr-bg"
+                                                                                                    data-toggle="modal"
+                                                                                                    data-target="#updateKeyFeature"
+                                                                                                    data-email="{{ $key_feature->key_feature_title }}">
+                                                                                                    {{ __('frontendmanage.Change') }}
+                                                                                                </button>
                                                                                             </div>
                                                                                         </div>
-                                                                                    @endif
-                                                                                    <div class="col-xl-3">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            <img style="max-width: 100%"
-                                                                                                src="{{ isset($home_content) ? asset(getRawHomeContents($home_content, 'key_feature_logo3', 'en')) : '' }} "
-                                                                                                alt="">
+                                                                                        <div class="col-xl-2">
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <button type="button"
+                                                                                                    class="primary-btn radius_30px mr-10 fix-gr-bg"
+                                                                                                    onclick="deleteKeyFeature()">
+                                                                                                    {{ __('frontendmanage.Delete') }}
+                                                                                                </button>
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </div>
-                                                                                    <div class="col-xl-3">
-                                                                                        <div class="primary_input mb-25">
-                                                                                            <button type="button"
-                                                                                                class="primary-btn radius_30px mr-10 fix-gr-bg"
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#keyFeature3">
-                                                                                                {{ __('frontendmanage.Change') }}
-
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    @endforeach
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+    
                                                                         <div class="col-xl-12">
                                                                             <div class="modal fade admin-query"
-                                                                                id="keyFeature1">
+                                                                                id="addKeyFeature">
                                                                                 <div
                                                                                     class="modal-dialog modal-dialog-centered">
                                                                                     <div class="modal-content">
                                                                                         <div class="modal-header">
                                                                                             <h4 class="modal-title">
-                                                                                                {{ __('frontendmanage.Change Key Feature') }}
-                                                                                                1 </h4>
+                                                                                                {{ __('frontendmanage.Add Key Feature') }}
+                                                                                            </h4>
                                                                                             <button type="button"
                                                                                                 class="close"
                                                                                                 data-dismiss="modal">
                                                                                                 <i class="ti-close "></i>
                                                                                             </button>
                                                                                         </div>
-
+    
+                                                                                        <div
+                                                                                            class="modal-body student-details header-menu">
+                                                                                            <div class="row pt-0">
+                                                                                                @if (isModuleActive('FrontendMultiLang'))
+                                                                                                    <ul class="nav nav-tabs no-bottom-border  mt-sm-md-20 mb-10 ml-3"
+                                                                                                        role="tablist">
+                                                                                                        @foreach ($LanguageList as $key => $language)
+                                                                                                            <li
+                                                                                                                class="nav-item">
+                                                                                                                <a class="nav-link  @if (auth()->user()->language_code == $language->code) active @endif"
+                                                                                                                    href="#elementkey1{{ $language->code }}"
+                                                                                                                    role="tab"
+                                                                                                                    data-toggle="tab">{{ $language->native }}
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                        @endforeach
+                                                                                                    </ul>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                            <div class="tab-content">
+                                                                                                <div role="tabpanel"
+                                                                                                    class="tab-pane fade show active"
+                                                                                                    id="elementkey">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-xl-12">
+                                                                                                            <div
+                                                                                                                class="primary_input mb-25">
+                                                                                                                <label
+                                                                                                                    class="primary_input_label"
+                                                                                                                    for="">{{ __('common.Title') }}</label>
+                                                                                                                <input
+                                                                                                                    class="primary_input_field"
+                                                                                                                    placeholder="{{ __('common.Title') }}"
+                                                                                                                    type="text"
+                                                                                                                    name="key_feature_title"
+                                                                                                                    {{ $errors->has('key_feature_title') ? ' autofocus' : '' }}>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        @if ($currentTheme != 'Edume')
+                                                                                                            <div
+                                                                                                                class="col-xl-12">
+                                                                                                                <div
+                                                                                                                    class="primary_input mb-25">
+                                                                                                                    <label
+                                                                                                                        class="primary_input_label"
+                                                                                                                        for="">
+                                                                                                                        {{ __('frontendmanage.Key Feature Subtitle') }}
+                                                                                                                    </label>
+                                                                                                                    <input
+                                                                                                                        class="primary_input_field"
+                                                                                                                        placeholder="{{ __('frontendmanage.Key Feature Subtitle') }}"
+                                                                                                                        type="text"
+                                                                                                                        name="key_feature_subtitle"
+                                                                                                                        {{ $errors->has('key_feature_subtitle') ? ' autofocus' : '' }}>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        @endif
+                                                                                                    </div>
+                                                                                                </div>
+    
+                                                                                            </div>
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <label
+                                                                                                    class="primary_input_label"
+                                                                                                    for="">{{ __('frontendmanage.Page Link') }}</label>
+    
+                                                                                                <select class="primary_select"
+                                                                                                    name="key_feature_link"
+                                                                                                    {{ $errors->has('host') ? 'autofocus' : '' }}
+                                                                                                    id="">
+                                                                                                    <option
+                                                                                                        data-display="{{ __('common.Select') }} {{ __('frontendmanage.Page Link') }}"
+                                                                                                        value="">
+                                                                                                        {{ __('common.Select') }}
+                                                                                                        {{ __('frontendmanage.Page Link') }}
+    
+                                                                                                    </option>
+                                                                                                    @foreach ($pages as $page)
+                                                                                                        <option
+                                                                                                            @if (getRawHomeContents($home_content, 'key_feature_link1', 'en') == $page->id) selected @endif
+                                                                                                            value="{{ $page->id }}">
+    
+                                                                                                            {{ $page->title }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div
+                                                                                                class="primary_input mb-25 mt-25">
+                                                                                                <label
+                                                                                                    class="primary_input_label"
+                                                                                                    for="">{{ __('frontendmanage.Key Feature Icon') }}
+                                                                                                    <small>({{ __('common.Recommended Size') }}
+                                                                                                        50x50 px)</small>
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="primary_file_uploader">
+                                                                                                    <input
+                                                                                                        class="primary-input  filePlaceholder {{ @$errors->has('key_feature_logo') ? ' is-invalid' : '' }}"
+                                                                                                        type="text"
+                                                                                                        id=""
+                                                                                                        placeholder="Browse file"
+                                                                                                        readonly=""
+                                                                                                        {{ $errors->has('key_feature_logo') ? ' autofocus' : '' }}>
+                                                                                                    <button class=""
+                                                                                                        type="button">
+                                                                                                        <label
+                                                                                                            class="primary-btn small fix-gr-bg"
+                                                                                                            for="file4">{{ __('common.Browse') }}</label>
+                                                                                                        <input type="file"
+                                                                                                            class="d-none imgInput4"
+                                                                                                            name="key_feature_logo"
+                                                                                                            id="file4">
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+    
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <label
+                                                                                                            class="primary_input_label"
+                                                                                                            for="">
+                                                                                                            {{ __('frontendmanage.Show Key Feature') }}</label>
+                                                                                                    </div>
+    
+                                                                                                    <div
+                                                                                                        class="col-md-2 mb-25">
+                                                                                                        <label
+                                                                                                            class="primary_checkbox d-flex mr-12"
+                                                                                                            for="show_key_feature1">
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                class="common-radio drip1"
+                                                                                                                id="show_key_feature1"
+                                                                                                                name="show_key_feature"
+                                                                                                                value="1"
+                                                                                                                checked>
+                                                                                                            <span
+                                                                                                                class="checkmark mr-2"></span>
+                                                                                                            {{ __('common.Yes') }}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="col-md-2 mb-25">
+                                                                                                        <label
+                                                                                                            class="primary_checkbox d-flex mr-12"
+                                                                                                            for="show_key_feature0">
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                class="common-radio drip0"
+                                                                                                                id="show_key_feature0"
+                                                                                                                name="show_key_feature"
+                                                                                                                value="0">
+                                                                                                            <span
+                                                                                                                class="checkmark mr-2"></span>
+                                                                                                            {{ __('common.No') }}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+    
+                                                                                            <div
+                                                                                                class="mt-40 d-flex justify-content-between">
+                                                                                                <button type="button"
+                                                                                                    class="primary-btn tr-bg"
+                                                                                                    data-dismiss="modal">{{ __('common.Cancel') }}</button>
+    
+                                                                                                <button
+                                                                                                    class="primary-btn fix-gr-bg"
+                                                                                                    type="submit">{{ __('common.Submit') }}
+                                                                                                </button>
+    
+                                                                                            </div>
+    
+                                                                                        </div>
+    
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+    
+                                                                            <div class="modal fade admin-query"
+                                                                                id="updateKeyFeature" tabindex="-1"
+                                                                                role="dialog"
+                                                                                aria-labelledby="exampleModalCenterTitle"
+                                                                                aria-hidden="true">
+                                                                                <div
+                                                                                    class="modal-dialog modal-dialog-centered">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h4 class="modal-title">
+                                                                                                {{ __('frontendmanage.Add Key Feature') }}
+                                                                                            </h4>
+                                                                                            <button type="button"
+                                                                                                class="close"
+                                                                                                data-dismiss="modal">
+                                                                                                <i class="ti-close "></i>
+                                                                                            </button>
+                                                                                        </div>
+    
+                                                                                        <div
+                                                                                            class="modal-body student-details header-menu">
+                                                                                            <div class="row pt-0">
+                                                                                                @if (isModuleActive('FrontendMultiLang'))
+                                                                                                    <ul class="nav nav-tabs no-bottom-border  mt-sm-md-20 mb-10 ml-3"
+                                                                                                        role="tablist">
+                                                                                                        @foreach ($LanguageList as $key => $language)
+                                                                                                            <li
+                                                                                                                class="nav-item">
+                                                                                                                <a class="nav-link  @if (auth()->user()->language_code == $language->code) active @endif"
+                                                                                                                    href="#elementkey1{{ $language->code }}"
+                                                                                                                    role="tab"
+                                                                                                                    data-toggle="tab">{{ $language->native }}
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                        @endforeach
+                                                                                                    </ul>
+                                                                                                @endif
+                                                                                            </div>
+                                                                                            <div class="tab-content">
+                                                                                                <div role="tabpanel"
+                                                                                                    class="tab-pane fade show active"
+                                                                                                    id="elementkey">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-xl-12">
+                                                                                                            <div
+                                                                                                                class="primary_input mb-25">
+                                                                                                                <label
+                                                                                                                    class="primary_input_label"
+                                                                                                                    for="">{{ __('common.Title') }}</label>
+                                                                                                                <input
+                                                                                                                    class="primary_input_field"
+                                                                                                                    placeholder="{{ __('common.Title') }}"
+                                                                                                                    type="text"
+                                                                                                                    name="key_feature_title"
+                                                                                                                    {{ $errors->has('key_feature_title') ? ' autofocus' : '' }}
+                                                                                                                    value="{{ $key_feature->key_feature_title }}">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        @if ($currentTheme != 'Edume')
+                                                                                                            <div
+                                                                                                                class="col-xl-12">
+                                                                                                                <div
+                                                                                                                    class="primary_input mb-25">
+                                                                                                                    <label
+                                                                                                                        class="primary_input_label"
+                                                                                                                        for="">
+                                                                                                                        {{ __('frontendmanage.Key Feature Subtitle') }}
+                                                                                                                    </label>
+                                                                                                                    <input
+                                                                                                                        class="primary_input_field"
+                                                                                                                        placeholder="{{ __('frontendmanage.Key Feature Subtitle') }}"
+                                                                                                                        type="text"
+                                                                                                                        name="key_feature_subtitle"
+                                                                                                                        {{ $errors->has('key_feature_subtitle') ? ' autofocus' : '' }}>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        @endif
+                                                                                                    </div>
+                                                                                                </div>
+    
+                                                                                            </div>
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <label
+                                                                                                    class="primary_input_label"
+                                                                                                    for="">{{ __('frontendmanage.Page Link') }}</label>
+    
+                                                                                                <select class="primary_select"
+                                                                                                    name="key_feature_link"
+                                                                                                    {{ $errors->has('host') ? 'autofocus' : '' }}
+                                                                                                    id="">
+                                                                                                    <option
+                                                                                                        data-display="{{ __('common.Select') }} {{ __('frontendmanage.Page Link') }}"
+                                                                                                        value="">
+                                                                                                        {{ __('common.Select') }}
+                                                                                                        {{ __('frontendmanage.Page Link') }}
+    
+                                                                                                    </option>
+                                                                                                    @foreach ($pages as $page)
+                                                                                                        <option
+                                                                                                            @if (getRawHomeContents($home_content, 'key_feature_link1', 'en') == $page->id) selected @endif
+                                                                                                            value="{{ $page->id }}">
+    
+                                                                                                            {{ $page->title }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+                                                                                                </select>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div
+                                                                                                class="primary_input mb-25 mt-25">
+                                                                                                <label
+                                                                                                    class="primary_input_label"
+                                                                                                    for="">{{ __('frontendmanage.Key Feature Icon') }}
+                                                                                                    <small>({{ __('common.Recommended Size') }}
+                                                                                                        50x50 px)</small>
+                                                                                                </label>
+                                                                                                <div
+                                                                                                    class="primary_file_uploader">
+                                                                                                    <input
+                                                                                                        class="primary-input  filePlaceholder {{ @$errors->has('key_feature_logo') ? ' is-invalid' : '' }}"
+                                                                                                        type="text"
+                                                                                                        id=""
+                                                                                                        placeholder="Browse file"
+                                                                                                        readonly=""
+                                                                                                        {{ $errors->has('key_feature_logo') ? ' autofocus' : '' }}>
+                                                                                                    <button class=""
+                                                                                                        type="button">
+                                                                                                        <label
+                                                                                                            class="primary-btn small fix-gr-bg"
+                                                                                                            for="file4">{{ __('common.Browse') }}</label>
+                                                                                                        <input type="file"
+                                                                                                            class="d-none imgInput4"
+                                                                                                            name="key_feature_logo"
+                                                                                                            id="file4">
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+    
+                                                                                            <div class="primary_input mb-25">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <label
+                                                                                                            class="primary_input_label"
+                                                                                                            for="">
+                                                                                                            {{ __('frontendmanage.Show Key Feature') }}</label>
+                                                                                                    </div>
+    
+                                                                                                    <div
+                                                                                                        class="col-md-2 mb-25">
+                                                                                                        <label
+                                                                                                            class="primary_checkbox d-flex mr-12"
+                                                                                                            for="show_key_feature1">
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                class="common-radio drip1"
+                                                                                                                id="show_key_feature1"
+                                                                                                                name="show_key_feature"
+                                                                                                                value="1"
+                                                                                                                checked>
+                                                                                                            <span
+                                                                                                                class="checkmark mr-2"></span>
+                                                                                                            {{ __('common.Yes') }}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="col-md-2 mb-25">
+                                                                                                        <label
+                                                                                                            class="primary_checkbox d-flex mr-12"
+                                                                                                            for="show_key_feature0">
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                class="common-radio drip0"
+                                                                                                                id="show_key_feature0"
+                                                                                                                name="show_key_feature"
+                                                                                                                value="0">
+                                                                                                            <span
+                                                                                                                class="checkmark mr-2"></span>
+                                                                                                            {{ __('common.No') }}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+    
+                                                                                            <div
+                                                                                                class="mt-40 d-flex justify-content-between">
+                                                                                                <button type="button"
+                                                                                                    class="primary-btn tr-bg"
+                                                                                                    data-dismiss="modal">{{ __('common.Cancel') }}</button>
+    
+                                                                                                <button
+                                                                                                    class="primary-btn fix-gr-bg"
+                                                                                                    type="submit">{{ __('common.Submit') }}
+                                                                                                </button>
+    
+                                                                                            </div>
+    
+                                                                                        </div>
+    
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+    
+                                                                            <div class="modal fade admin-query"
+                                                                                id="updateKeyFeature">
+                                                                                <div
+                                                                                    class="modal-dialog modal-dialog-centered">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h4 class="modal-title">
+                                                                                                {{ __('frontendmanage.Change Key Feature') }}
+                                                                                            </h4>
+                                                                                            <button type="button"
+                                                                                                class="close"
+                                                                                                data-dismiss="modal">
+                                                                                                <i class="ti-close "></i>
+                                                                                            </button>
+                                                                                        </div>
+    
                                                                                         <div
                                                                                             class="modal-body student-details header-menu">
                                                                                             <div class="row pt-0">
@@ -613,8 +1477,7 @@
                                                                                                     <div role="tabpanel"
                                                                                                         class="tab-pane fade @if (auth()->user()->language_code == $language->code) show active @endif  "
                                                                                                         id="elementkey1{{ $language->code }}">
-                                                                                                        <div
-                                                                                                            class="row">
+                                                                                                        <div class="row">
                                                                                                             <div
                                                                                                                 class="col-xl-12">
                                                                                                                 <div
@@ -656,14 +1519,14 @@
                                                                                                     </div>
                                                                                                 @endforeach
                                                                                             </div>
-
+    
                                                                                             <div class="col-xl-12">
                                                                                                 <div
                                                                                                     class="primary_input mb-25">
                                                                                                     <label
                                                                                                         class="primary_input_label"
                                                                                                         for="">{{ __('frontendmanage.Page Link') }}</label>
-
+    
                                                                                                     <select
                                                                                                         class="primary_select   "
                                                                                                         name="key_feature_link1"
@@ -674,22 +1537,22 @@
                                                                                                             value="">
                                                                                                             {{ __('common.Select') }}
                                                                                                             {{ __('frontendmanage.Page Link') }}
-
+    
                                                                                                         </option>
                                                                                                         @foreach ($pages as $page)
                                                                                                             <option
                                                                                                                 @if (getRawHomeContents($home_content, 'key_feature_link1', 'en') == $page->id) selected @endif
                                                                                                                 value="{{ $page->id }}">
-
+    
                                                                                                                 {{ $page->title }}
                                                                                                             </option>
                                                                                                         @endforeach
                                                                                                     </select>
-
+    
                                                                                                 </div>
                                                                                             </div>
-
-
+    
+    
                                                                                             <div class="col-xl-12 mt-3">
                                                                                                 <div
                                                                                                     class="primary_input mt_25 mb-25">
@@ -710,8 +1573,7 @@
                                                                                                             id=""
                                                                                                             placeholder="Browse file"
                                                                                                             readonly="">
-                                                                                                        <button
-                                                                                                            class=""
+                                                                                                        <button class=""
                                                                                                             type="button">
                                                                                                             <label
                                                                                                                 class="primary-btn small fix-gr-bg"
@@ -734,27 +1596,27 @@
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
-
-
+    
+    
                                                                                             <div
                                                                                                 class="mt-40 d-flex justify-content-between">
                                                                                                 <button type="button"
                                                                                                     class="primary-btn tr-bg"
                                                                                                     data-dismiss="modal">{{ __('common.Cancel') }}</button>
-
+    
                                                                                                 <button
                                                                                                     class="primary-btn fix-gr-bg"
                                                                                                     type="submit">{{ __('common.Submit') }}
                                                                                                 </button>
-
+    
                                                                                             </div>
-
+    
                                                                                         </div>
-
+    
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
+    
                                                                             <div class="modal fade admin-query"
                                                                                 id="keyFeature2">
                                                                                 <div
@@ -770,9 +1632,9 @@
                                                                                                 <i class="ti-close "></i>
                                                                                             </button>
                                                                                         </div>
-
+    
                                                                                         <div class="modal-body">
-
+    
                                                                                             <div class="row pt-0">
                                                                                                 @if (isModuleActive('FrontendMultiLang'))
                                                                                                     <ul class="nav nav-tabs no-bottom-border  mt-sm-md-20 mb-10 ml-3"
@@ -795,8 +1657,7 @@
                                                                                                     <div role="tabpanel"
                                                                                                         class="tab-pane fade @if (auth()->user()->language_code == $language->code) show active @endif  "
                                                                                                         id="elementkey2{{ $language->code }}">
-                                                                                                        <div
-                                                                                                            class="row">
+                                                                                                        <div class="row">
                                                                                                             <div
                                                                                                                 class="col-xl-12">
                                                                                                                 <div
@@ -844,7 +1705,7 @@
                                                                                                     <label
                                                                                                         class="primary_input_label"
                                                                                                         for="">{{ __('frontendmanage.Page Link') }}</label>
-
+    
                                                                                                     <select
                                                                                                         class="primary_select   "
                                                                                                         name="key_feature_link2"
@@ -855,7 +1716,7 @@
                                                                                                             value="">
                                                                                                             {{ __('common.Select') }}
                                                                                                             {{ __('frontendmanage.Page Link') }}
-
+    
                                                                                                         </option>
                                                                                                         @foreach ($pages as $page)
                                                                                                             <option
@@ -865,10 +1726,10 @@
                                                                                                             </option>
                                                                                                         @endforeach
                                                                                                     </select>
-
+    
                                                                                                 </div>
                                                                                             </div>
-
+    
                                                                                             <div class="col-xl-12">
                                                                                                 <div
                                                                                                     class="primary_input mt_25 mb-25">
@@ -889,8 +1750,7 @@
                                                                                                             id=""
                                                                                                             placeholder="Browse file"
                                                                                                             readonly="">
-                                                                                                        <button
-                                                                                                            class=""
+                                                                                                        <button class=""
                                                                                                             type="button">
                                                                                                             <label
                                                                                                                 class="primary-btn small fix-gr-bg"
@@ -913,27 +1773,27 @@
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
-
-
+    
+    
                                                                                             <div
                                                                                                 class="mt-40 d-flex justify-content-between">
                                                                                                 <button type="button"
                                                                                                     class="primary-btn tr-bg"
                                                                                                     data-dismiss="modal">{{ __('common.Cancel') }}</button>
-
+    
                                                                                                 <button
                                                                                                     class="primary-btn fix-gr-bg"
                                                                                                     type="submit">{{ __('common.Submit') }}
                                                                                                 </button>
-
+    
                                                                                             </div>
-
+    
                                                                                         </div>
-
+    
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
+    
                                                                             <div class="modal fade admin-query"
                                                                                 id="keyFeature3">
                                                                                 <div
@@ -949,7 +1809,7 @@
                                                                                                 <i class="ti-close "></i>
                                                                                             </button>
                                                                                         </div>
-
+    
                                                                                         <div class="modal-body">
                                                                                             <div class="row pt-0">
                                                                                                 @if (isModuleActive('FrontendMultiLang'))
@@ -973,8 +1833,7 @@
                                                                                                     <div role="tabpanel"
                                                                                                         class="tab-pane fade @if (auth()->user()->language_code == $language->code) show active @endif  "
                                                                                                         id="element{{ $language->code }}">
-                                                                                                        <div
-                                                                                                            class="row">
+                                                                                                        <div class="row">
                                                                                                             <div
                                                                                                                 class="col-xl-12">
                                                                                                                 <div
@@ -1022,7 +1881,7 @@
                                                                                                     <label
                                                                                                         class="primary_input_label"
                                                                                                         for="">{{ __('frontendmanage.Page Link') }}</label>
-
+    
                                                                                                     <select
                                                                                                         class="primary_select   "
                                                                                                         name="key_feature_link3"
@@ -1033,21 +1892,21 @@
                                                                                                             value="">
                                                                                                             {{ __('common.Select') }}
                                                                                                             {{ __('frontendmanage.Page Link') }}
-
+    
                                                                                                         </option>
                                                                                                         @foreach ($pages as $page)
                                                                                                             <option
                                                                                                                 @if (getRawHomeContents($home_content, 'key_feature_link3', 'en') == $page->id) selected @endif
                                                                                                                 value=" {{ $page->id }}">
-
+    
                                                                                                                 {{ $page->title }}
                                                                                                             </option>
                                                                                                         @endforeach
                                                                                                     </select>
-
+    
                                                                                                 </div>
                                                                                             </div>
-
+    
                                                                                             <div class="col-xl-12">
                                                                                                 <div
                                                                                                     class="primary_input mt_25 mb-25">
@@ -1069,8 +1928,7 @@
                                                                                                             placeholder="Browse file"
                                                                                                             readonly=""
                                                                                                             {{ $errors->has('instructor_banner') ? ' autofocus' : '' }}>
-                                                                                                        <button
-                                                                                                            class=""
+                                                                                                        <button class=""
                                                                                                             type="button">
                                                                                                             <label
                                                                                                                 class="primary-btn small fix-gr-bg"
@@ -1093,23 +1951,23 @@
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
-
-
+    
+    
                                                                                             <div
                                                                                                 class="mt-40 d-flex justify-content-between">
                                                                                                 <button type="button"
                                                                                                     class="primary-btn tr-bg"
                                                                                                     data-dismiss="modal">{{ __('common.Cancel') }}</button>
-
+    
                                                                                                 <button
                                                                                                     class="primary-btn fix-gr-bg"
                                                                                                     type="submit">{{ __('common.Submit') }}
                                                                                                 </button>
-
+    
                                                                                             </div>
-
+    
                                                                                         </div>
-
+    
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1119,7 +1977,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endif
+                                                @endif --}}
                                             @elseif($block->id == 3)
                                                 @if ($currentTheme == 'infixlmstheme' || $currentTheme == 'tvt' || $currentTheme == 'teachery')
                                                     <div data-id="{{ $block->id }}" class="row">
@@ -1161,7 +2019,6 @@
 
                                                                             </div>
                                                                             <div id="show_category_section_box"
-
                                                                                 style="@if (@getRawHomeContents($home_content, 'show_category_section', 'en') == 0) display:none @endif ">
                                                                                 <div class="row pt-0">
                                                                                     @if (isModuleActive('FrontendMultiLang'))
@@ -1190,9 +2047,11 @@
                                                                                                         class="primary_input mb-25">
                                                                                                         <div
                                                                                                             class="video_container">
-                                                                                                            <div class="primary_input_label">
+                                                                                                            <div
+                                                                                                                class="primary_input_label">
                                                                                                                 <label
-                                                                                                                    class="switch_toggle" for="enable_video">
+                                                                                                                    class="switch_toggle"
+                                                                                                                    for="enable_video">
                                                                                                                     <input
                                                                                                                         type="checkbox"
                                                                                                                         class="status_enable_disable"
@@ -2020,8 +2879,8 @@
                                                         <div class="card">
                                                             <div class="card-header" id="heading{{ $block->id }}">
                                                                 <h2 class="mb-0">
-                                                                    <button class="btn btn-block text-left"
-                                                                        type="button" data-toggle="collapse"
+                                                                    <button class="btn btn-block text-left" type="button"
+                                                                        data-toggle="collapse"
                                                                         data-target="#collapse{{ $block->id }}"
                                                                         aria-expanded="true"
                                                                         aria-controls="collapse{{ $block->id }}">
@@ -2030,8 +2889,7 @@
                                                                 </h2>
                                                             </div>
 
-                                                            <div id="collapse{{ $block->id }}"
-                                                                class="collapse show"
+                                                            <div id="collapse{{ $block->id }}" class="collapse show"
                                                                 aria-labelledby="heading{{ $block->id }}"
                                                                 data-parent="#accordionHomeContent">
                                                                 <div class="card-body">
@@ -3832,11 +4690,13 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
 
 
             </div>
+
+
+        </div>
     </section>
 
 @endsection
@@ -4296,7 +5156,7 @@
 
 
         $('#enable_video').change(function() {
-            if($(this).is(":checked")) {
+            if ($(this).is(":checked")) {
                 $(this).attr('checked', true);
                 $(this).val('true');
             } else {
@@ -4329,5 +5189,21 @@
                 });
             });
         @endif
+
+        $('.update_key_feature_button').on('click', function() {
+            let feature = $(this).data('feature');
+            $('#modal_key_feature_id').attr("value", feature.id);
+            $('#modal_key_feature_title').attr("value", feature.key_feature_title);
+            $('#modal_key_feature_subtitle').attr("value", feature.key_feature_subtitle);
+            $("#modal_key_feature_link option[value='"+feature.key_feature_link+"']").attr('selected', 'selected');
+            $('#modal_key_feature_logo').attr("value", feature.key_feature_logo);
+            if(feature.show_key_feature == 1) {
+                $('#update_show_key_feature1').attr("checked", 1);
+            }
+            else {
+                $('#update_show_key_feature0').attr("checked", 1);
+            }
+            $('#update_key_feature_modal').modal('show');
+        })
     </script>
 @endpush

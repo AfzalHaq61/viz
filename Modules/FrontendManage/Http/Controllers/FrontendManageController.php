@@ -18,6 +18,7 @@ use Modules\FrontendManage\Entities\HomeSlider;
 use Modules\SystemSetting\Entities\Testimonial;
 use Modules\FrontendManage\Entities\HomeContent;
 use Modules\FrontendManage\Entities\CourseSetting;
+use Modules\FrontendManage\Entities\KeyFeature;
 use Modules\FrontendManage\Entities\PrivacyPolicy;
 use Modules\FrontendManage\Entities\TopbarSetting;
 use Modules\SystemSetting\Entities\FrontendSetting;
@@ -42,12 +43,13 @@ class FrontendManageController extends Controller
                 $domain = 'main';
             }
             $home_content = app('getHomeContent');
+            $key_features = KeyFeature::all();
             $pages = FrontPage::where('status', 1)->get();
             $blocks = Cache::rememberForever('homepage_block_positions' . $domain, function () {
                 return DB::table('homepage_block_positions')->select(['id', 'block_name', 'order'])->orderBy('order', 'asc')->get();
             });
 
-            return view('frontendmanage::home_content', compact('home_content', 'pages', 'blocks'));
+            return view('frontendmanage::home_content', compact('home_content', 'key_features', 'pages', 'blocks'));
         } catch (Throwable $th) {
             Toastr::error(trans('common.Operation failed'), trans('common.Failed'));
             return redirect()->back();
@@ -95,18 +97,17 @@ class FrontendManageController extends Controller
                 UpdateHomeContent('slider_banner', $this->saveImage($request->slider_banner));
             }
 
+            // if ($request->key_feature_logo1 != null) {
+            //     UpdateHomeContent('key_feature_logo1', $this->saveImage($request->key_feature_logo1));
+            // }
 
-            if ($request->key_feature_logo1 != null) {
-                UpdateHomeContent('key_feature_logo1', $this->saveImage($request->key_feature_logo1));
-            }
+            // if ($request->key_feature_logo2 != null) {
+            //     UpdateHomeContent('key_feature_logo2', $this->saveImage($request->key_feature_logo2));
+            // }
 
-            if ($request->key_feature_logo2 != null) {
-                UpdateHomeContent('key_feature_logo2', $this->saveImage($request->key_feature_logo2));
-            }
-
-            if ($request->key_feature_logo3 != null) {
-                UpdateHomeContent('key_feature_logo3', $this->saveImage($request->key_feature_logo3));
-            }
+            // if ($request->key_feature_logo3 != null) {
+            //     UpdateHomeContent('key_feature_logo3', $this->saveImage($request->key_feature_logo3));
+            // }
 
             if ($request->banner_logo != null) {
                 UpdateHomeContent('banner_logo', $this->saveImage($request->banner_logo));
@@ -161,11 +162,77 @@ class FrontendManageController extends Controller
 
             GenerateHomeContent(SaasDomain());
 
+            // $keyfeature = new KeyFeature();
+
+            // $keyfeature->key_feature_title = $request->key_feature_title;
+            // $keyfeature->key_feature_subtitle = $request->key_feature_subtitle;
+            // $keyfeature->key_feature_link = $request->key_feature_link;
+            // if ($request->file('key_feature_logo') != "") {
+            //     $keyfeature->key_feature_logo = $this->saveImage($request->key_feature_logo);
+            // }
+            // $keyfeature->show_key_feature = $request->show_key_feature;
+
+            // $keyfeature->save();
+
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('frontend.homeContent');
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
+    }
+
+    public function CreateKeyFeature(Request $request)
+    {
+        $keyfeature = new KeyFeature();
+
+        $keyfeature->key_feature_title = $request->key_feature_title;
+        $keyfeature->key_feature_subtitle = $request->key_feature_subtitle;
+        $keyfeature->key_feature_link = $request->key_feature_link;
+        if ($request->file('key_feature_logo') != "") {
+            $keyfeature->key_feature_logo = $this->saveImage($request->key_feature_logo);
+        }
+        $keyfeature->show_key_feature = $request->show_key_feature;
+
+        $keyfeature->save();
+
+        Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+        return redirect()->to(route('frontend.homeContent'));
+    }
+
+    public function UpdateKeyFeature(Request $request)
+    {
+        $keyfeature = KeyFeature::find($request['update_key_feature_id']);
+
+        if($request->file('update_key_feature_logo') != "") {
+            if (file_exists($keyfeature->key_feature_logo)) {
+                unlink($keyfeature->key_feature_logo);
+            }
+        }
+
+        KeyFeature::where('id', $request['update_key_feature_id'])
+            ->update([
+                'key_feature_title' => $request->update_key_feature_title,
+                'key_feature_subtitle' => $request->update_key_feature_subtitle,
+                'key_feature_link' => $request->update_key_feature_link ? $request->update_key_feature_link : $keyfeature->key_feature_link,
+                'key_feature_logo' => $request->file('update_key_feature_logo') != "" ? $this->saveImage($request->update_key_feature_logo) : $keyfeature->key_feature_logo,
+                'show_key_feature' => $request->update_show_key_feature,
+            ]);
+
+        Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+        return redirect()->to(route('frontend.homeContent'));
+    }
+
+    public function DeleteKeyFeature()
+    {
+        $keyfeature = KeyFeature::find(request('id'));
+
+        if (file_exists($keyfeature->key_feature_logo)) {
+            unlink($keyfeature->key_feature_logo);
+        }
+
+        $keyfeature->delete();
+        Toastr::success(trans('common.Operation successful'), trans('common.Success'));
+        return redirect()->to(route('frontend.homeContent'));
     }
 
     public function PageContent()
