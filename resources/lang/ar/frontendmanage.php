@@ -429,5 +429,7 @@ return [
     "Add Key Feature" => "Add Key Feature",
     "Show Key Feature" => "Show Key Feature",
     "Delete" => "Delete",
+    "Update Key Feature" => "Update Key Feature",
+    "Browse Key Feature Logo" => "Browse Key Feature Logo",
 
 ];
