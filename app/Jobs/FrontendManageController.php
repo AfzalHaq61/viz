@@ -97,6 +97,18 @@ class FrontendManageController extends Controller
                 UpdateHomeContent('slider_banner', $this->saveImage($request->slider_banner));
             }
 
+            // if ($request->key_feature_logo1 != null) {
+            //     UpdateHomeContent('key_feature_logo1', $this->saveImage($request->key_feature_logo1));
+            // }
+
+            // if ($request->key_feature_logo2 != null) {
+            //     UpdateHomeContent('key_feature_logo2', $this->saveImage($request->key_feature_logo2));
+            // }
+
+            // if ($request->key_feature_logo3 != null) {
+            //     UpdateHomeContent('key_feature_logo3', $this->saveImage($request->key_feature_logo3));
+            // }
+
             if ($request->banner_logo != null) {
                 UpdateHomeContent('banner_logo', $this->saveImage($request->banner_logo));
             }
@@ -123,6 +135,7 @@ class FrontendManageController extends Controller
             UpdateHomeContent('show_menu_search_box', $request->show_menu_search_box == 1 ? 1 : 0);
             UpdateHomeContent('show_subscription_plan', $request->show_subscription_plan == 1 ? 1 : 0);
             UpdateHomeContent('show_banner_search_box', $request->show_banner_search_box == 1 ? 1 : 0);
+            UpdateHomeContent('show_key_feature', $request->show_key_feature == 1 ? 1 : 0);
             UpdateHomeContent('show_banner_section', $request->show_banner_section == 1 ? 1 : 0);
             UpdateHomeContent('show_category_section', $request->show_category_section == 1 ? 1 : 0);
             UpdateHomeContent('show_testimonial_section', $request->show_testimonial_section == 1 ? 1 : 0);
@@ -149,18 +162,23 @@ class FrontendManageController extends Controller
 
             GenerateHomeContent(SaasDomain());
 
+            // $keyfeature = new KeyFeature();
+
+            // $keyfeature->key_feature_title = $request->key_feature_title;
+            // $keyfeature->key_feature_subtitle = $request->key_feature_subtitle;
+            // $keyfeature->key_feature_link = $request->key_feature_link;
+            // if ($request->file('key_feature_logo') != "") {
+            //     $keyfeature->key_feature_logo = $this->saveImage($request->key_feature_logo);
+            // }
+            // $keyfeature->show_key_feature = $request->show_key_feature;
+
+            // $keyfeature->save();
+
             Toastr::success(trans('common.Operation successful'), trans('common.Success'));
             return redirect()->route('frontend.homeContent');
         } catch (\Exception $e) {
             GettingError($e->getMessage(), url()->current(), request()->ip(), request()->userAgent());
         }
-    }
-
-    public function ShowKeyFeature()
-    {
-        UpdateHomeContent('show_key_feature', request('show') == 1 ? 1 : 0);
-        GenerateHomeContent(SaasDomain());
-        return redirect()->route('frontend.homeContent');
     }
 
     public function CreateKeyFeature(Request $request)
@@ -185,7 +203,7 @@ class FrontendManageController extends Controller
     {
         $keyfeature = KeyFeature::find($request['update_key_feature_id']);
 
-        if ($request->file('update_key_feature_logo') != "") {
+        if($request->file('update_key_feature_logo') != "") {
             if (file_exists($keyfeature->key_feature_logo)) {
                 unlink($keyfeature->key_feature_logo);
             }

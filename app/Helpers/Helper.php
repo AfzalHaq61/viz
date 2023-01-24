@@ -105,6 +105,7 @@ if (!function_exists('send_email')) {
 
     function send_email($user, $type, $shortcodes = [])
     {
+    
         try {
             $query = EmailTemplate::query();
             if (!showEcommerce()) {
@@ -134,6 +135,7 @@ if (!function_exists('send_email')) {
                 } else if ($config->id == 3) {
                     sendMailBySendGrid($config, $to_email, $user->name, $config->from_email, Settings('site_title'), $email_template->subj, $message);
                 }
+
                 return true;
             }
             return false;
@@ -141,7 +143,6 @@ if (!function_exists('send_email')) {
             Log::error($e->getMessage());
             return false;
         }
-
 
     }
 }

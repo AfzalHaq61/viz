@@ -9,7 +9,7 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::post('/sponsors/update', 'SponsorController@update')->name('sponsors.update');
     Route::get('/sponsors/destroy/{id}', 'SponsorController@destroy')->name('sponsors.destroy');
 
-//sliders
+    //sliders
     Route::resource('/sliders', 'SliderController')->except('show', 'update', 'destroy');
     Route::post('/sliders/update', 'SliderController@update')->name('sliders.update');
     Route::get('/sliders/destroy/{id}', 'SliderController@destroy')->name('sliders.destroy');
@@ -48,10 +48,11 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::get('home-content', 'FrontendManageController@HomeContent')->name('homeContent');
     Route::post('home-content', 'FrontendManageController@HomeContentUpdate')->name('homeContent_Update');
 
+    Route::get('key-feature/delete', 'FrontendManageController@DeleteKeyFeature')->name('deleteKeyFeature');
+    Route::get('key-feature/{show}', 'FrontendManageController@ShowKeyFeature')->name('showKeyFeature');
     Route::post('key-feature/add', 'FrontendManageController@CreateKeyFeature')->name('createKeyFeature');
     Route::post('key-feature/update', 'FrontendManageController@UpdateKeyFeature')->name('updateKeyFeature');
-    Route::get('key-feature/delete', 'FrontendManageController@DeleteKeyFeature')->name('deleteKeyFeature');
-    
+
     //Topbar Setting
     Route::get('top-bar-settings', 'FrontendManageController@showTopBarSettings')->name('showTopBarSettings');
     Route::post('top-bar-settings', 'FrontendManageController@saveTopBarSettings')->name('saveTopBarSettings');
@@ -116,5 +117,4 @@ Route::group(['prefix' => 'frontend', 'as' => 'frontend.', 'middleware' => ['aut
     Route::post('/faq-update', 'HomePageFaqController@update')->name('faq.update')->middleware('RoutePermissionCheck:frontend.faq.update');
     Route::post('/faq-delete', 'HomePageFaqController@destroy')->name('faq.destroy')->middleware('RoutePermissionCheck:frontend.faq.destroy');
     Route::post('/change-home-page-faq-position', 'HomePageFaqController@changeFaqPosition')->name('changeHomePageFaqPosition')->middleware('RoutePermissionCheck:changeHomePageFaqPosition');
-
 });

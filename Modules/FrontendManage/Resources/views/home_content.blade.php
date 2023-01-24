@@ -301,11 +301,11 @@
                                                                             <label class="switch_toggle "
                                                                                 for="key_feature_show">
                                                                                 <input type="checkbox"
-                                                                                    class="status_enable_disable"
+                                                                                    class="status_enable_disable key_feature_show"
                                                                                     name="show_key_feature"
                                                                                     id="key_feature_show"
                                                                                     @if (@getRawHomeContents($home_content, 'show_key_feature', 'en') == 1) checked @endif
-                                                                                    value="1">
+                                                                                    value="{{ @getRawHomeContents($home_content, 'show_key_feature', 'en') }}">
                                                                                 <i class="slider round"></i>
 
 
@@ -4145,7 +4145,6 @@
             }
             $('#update_key_feature_modal').modal('show');
         })
-        // {{ asset('public/backend/vendors/nestable/jquery.nestable.min.css') }}
 
         function readURLKeyFeatureLogo(input) {
             if (input.files && input.files[0]) {
@@ -4173,6 +4172,19 @@
 
         $(".imageInputUpdateKeyFeatureLogo").change(function() {
             readURLKeyUpdateFeatureLogo(this);
+        });
+
+        $(".key_feature_show").change(function() {
+            var show = $(".key_feature_show").val();
+            if(show == 1)
+            {
+                show = 0;
+            }
+            else {
+                show = 1;
+            }
+            var url = "{{route('frontend.showKeyFeature', '')}}"+"/"+show;
+            document.location.href=url;
         });
     </script>
 @endpush

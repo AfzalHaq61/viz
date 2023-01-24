@@ -25,6 +25,6 @@ class SendGeneralEmail implements ShouldQueue
     public function handle()
     {
         Log::info( $this->type.'->send mail');
-        send_email($this->user->name, $this->type, $this->shortcodes);
+        send_email($this->user, $this->type, $this->shortcodes);
     }
 }
