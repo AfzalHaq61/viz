@@ -27,8 +27,8 @@
         }
 
         .course_tumbnail {
-            width: 100%;
-            height: 400px;
+            width: 600px;
+            height: auto;
         }
 
         @media (max-width: 600px) {
@@ -39,7 +39,8 @@
             }
 
             .course_tumbnail {
-                height: 300px;
+                width: 300px;
+                height: auto;
             }
         }
     </style>
