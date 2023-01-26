@@ -11,6 +11,29 @@
         .who_we_area .who_we_info .info_right {
             padding: 0;
         }
+
+        .who_we_are {
+            border: 1px solid #e9e7f7;
+            padding: 57px 80px 67px 50px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .who_we_are span {
+            font-family: Jost, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #373737;
+            display: inline-block;
+            margin-bottom: 21px;
+        }
+
+        .who_we_are p {
+            font-family: Cerebri Sans;
+            font-size: 24px;
+            line-height: 35px;
+            font-weight: 700;
+            color: var(--system_secendory_color);
+        }
     </style>
 @endsection
 @section('js')
